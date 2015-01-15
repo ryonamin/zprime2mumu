@@ -34,7 +34,7 @@ void MyAnalyzer_skeleton(const string fpath = "") {
     T.GetEntry(ev);
     // Write processes here
     // An example for loop of a vector
-    for ( int ip = 0; ip < T.muon_tevOptimized_pt->size(); ip++ ) {
+    for ( unsigned int ip = 0; ip < T.muon_tevOptimized_pt->size(); ip++ ) {
       hPt.Fill(T.muon_tevOptimized_pt->at(ip));
     }
   }
