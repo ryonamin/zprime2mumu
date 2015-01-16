@@ -8,13 +8,17 @@
 
   // Load additional packages
   gSystem->Load("TreeHandler"); // TTree wrapper
+  gSystem->Load("Util");        // Helper
+  gSystem->Load("MCParticleFinder"); // Matching Reco-Gen 
+  gSystem->Load("MCDimuonReco");     // reco dimuon for MC
 
   // Load your macro with compilation
-  gROOT->LoadMacro("MyAnalyzer_skeleton.C+");
+  //gROOT->LoadMacro("MyAnalyzer_skeleton.C+");
+  gROOT->LoadMacro("MyAnalyzer.C+");
 
   // Run it
   int nentries = sizeof(inputs) / sizeof(string);
   for (int ientry = 0; ientry < nentries; ientry++ ) { 
-    MyAnalyzer_skeleton(inputs[ientry]); 
+    MyAnalyzer(inputs[ientry]); 
   }
 }

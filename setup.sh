@@ -5,7 +5,7 @@ else
   echo "ROOT is ready :-)"
   if [ "${DONE}" = "" ]; then
     export BASEDIR=${PWD}
-    export CPATH=${BASEDIR}/include:${CPATH}
+    export INCPATH=${BASEDIR}/include
     export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
     export DYLD_LIBRARY_PATH=${LD_LIBRARY_PATH}
     export DONE=1
