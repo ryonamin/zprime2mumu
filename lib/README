@@ -1,0 +1,2 @@
+When you compile the codes in src directory with make, 
+the shared libraries will be copied to this directory for convenience.

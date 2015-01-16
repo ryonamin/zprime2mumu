@@ -1,0 +1,2 @@
+When you compile the codes in src directory with make, 
+the include files will be copied to this directory for convenience.
