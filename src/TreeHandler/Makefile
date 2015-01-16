@@ -1,6 +1,6 @@
+CXX=$(shell root-config --cxx)
 CXXFLAGS=$(shell root-config --cflags) -fPIC 
 ROOTLIBS=$(shell root-config --libs)
-
 BASE=TreeHandler
 
 SONAME=$(addsuffix .so,${BASE}) 
@@ -12,11 +12,11 @@ HDR=$(addsuffix .h,${BASE})
 DICTHDR=$(addsuffix Dict.h,${BASE}) 
 
 $(SONAME) : $(OBJ)  
-	g++ $(ROOTLIBS) -shared -o $(SONAME) $(OBJ) $(DICTOBJ)
+	$(CXX) $(ROOTLIBS) -shared -o $(SONAME) $(OBJ) $(DICTOBJ)
 	cp $(HDR) $(BASEDIR)/include 
 	cp $(SONAME) $(BASEDIR)/lib 
 $(OBJ) : $(DICTSRC) $(SRC)
-	g++ $(CXXFLAGS) -c $(DICTSRC) $(SRC)
+	$(CXX) $(CXXFLAGS) -c $(DICTSRC) $(SRC)
 $(DICTSRC) : $(HDR)
 	rootcint -f $(DICTSRC) -c $(HDR) LinkDef.h
 
