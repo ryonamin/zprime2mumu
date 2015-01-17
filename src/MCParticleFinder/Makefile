@@ -1,5 +1,5 @@
 CXX=$(shell root-config --cxx)
-CXXFLAGS=$(shell root-config --cflags) -I$(INCPATH) -fPIC 
+CXXFLAGS=$(shell root-config --cflags) -I$(CPATH) -fPIC 
 ROOTLIBS=$(shell root-config --libs)
 BASE=MCParticleFinder
 
