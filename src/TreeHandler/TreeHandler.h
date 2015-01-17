@@ -20,8 +20,11 @@ class TreeHandler : public TChain
   std::vector<int>* mc_charge;
   std::vector<int>* mc_status;
   std::vector<float>* muon_pt;
+  std::vector<float>* muon_ptError;
   std::vector<float>* muon_phi;
-  std::vector<float>* muon_eta;
+  std::vector<float>* muon_phiError;
+  std::vector<float>* muon_theta;
+  std::vector<float>* muon_thetaError;
   std::vector<float>* muon_tevOptimized_pt;
   std::vector<float>* muon_tevOptimized_ptError;
   std::vector<float>* muon_tevOptimized_phi;

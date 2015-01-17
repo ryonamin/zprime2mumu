@@ -17,8 +17,11 @@ TreeHandler::TreeHandler(std::string treename,
 	                                                 mc_charge(0),
 	                                                 mc_status(0),
 			                                 muon_pt(0),
+			                                 muon_ptError(0),
 			                                 muon_phi(0),
-			                                 muon_eta(0),
+			                                 muon_phiError(0),
+			                                 muon_theta(0),
+			                                 muon_thetaError(0),
 			                                 muon_tevOptimized_pt(0),
 			                                 muon_tevOptimized_ptError(0),
 			                                 muon_tevOptimized_phi(0),
@@ -44,8 +47,11 @@ TreeHandler::TreeHandler(std::string treename,
   SetBranchAddress("mc_charge"         , &mc_charge) ;
   SetBranchAddress("mc_status"         , &mc_status) ;
   SetBranchAddress("muon_pt"            , &muon_pt) ;
+  SetBranchAddress("muon_ptError"       , &muon_ptError) ;
   SetBranchAddress("muon_phi"           , &muon_phi) ;
-  SetBranchAddress("muon_eta"           , &muon_eta) ;
+  SetBranchAddress("muon_phiError"      , &muon_phiError) ;
+  SetBranchAddress("muon_theta"         , &muon_theta) ;
+  SetBranchAddress("muon_thetaError"    , &muon_thetaError) ;
   SetBranchAddress("muon_tevOptimized_pt",&muon_tevOptimized_pt) ;
   SetBranchAddress("muon_tevOptimized_ptError",&muon_tevOptimized_ptError) ;
   SetBranchAddress("muon_tevOptimized_phi",&muon_tevOptimized_phi) ;
