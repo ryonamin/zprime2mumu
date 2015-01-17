@@ -17,24 +17,17 @@
 
 using namespace std;
 
-void MyAnalyzer(const string fpath = "") {
+void MyAnalyzer(vector<string>& fpaths, string outfilename) {
+  TreeHandler T("IIHEAnalysis",fpaths);
+  std::cout << "Processing  ..." << std::endl;
+  T.DumpInputs();
+  std::cout << "  Total umber of events = " << T.GetEntries() << std::endl;
 
   // Cut parameters 
   const float highPtThreshold = 40.; // 40 GeV
 
-
-  TFile fin(fpath.c_str());
-  // Get IIHETree object.
-  TreeHandler T(static_cast<TTree*>(fin.Get("IIHEAnalysis")));
-  
-  std::cout << "Processing " << fpath << " ..." << std::endl;
-  std::cout << "  Number of events = " << T.GetEntries() << std::endl;
-
   // Output root file
-  Util u;
-  stringstream foutname;
-  foutname << "MyAnalyzer_" << u.GetRootFileNameFromPath(static_cast<const char*>(fpath.c_str())) << ends;
-  TFile fout(foutname.str().data(),"RECREATE");
+  TFile fout(outfilename.c_str(),"RECREATE");
 
   MCDimuonReco mcdimuonreco(T);
   MCParticleFinder mcpfinder(T);
@@ -192,6 +185,6 @@ void MyAnalyzer(const string fpath = "") {
   hDimuonDeltaMassNorm->Write();
   hMCPhi->Write();
   hMCEta->Write();
-  fout.Write();
+  //fout.Write();
   fout.Close();
 }

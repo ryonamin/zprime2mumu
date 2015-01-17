@@ -28,7 +28,7 @@ using namespace std;
 
 class ZprimeLoop {
    public :
-      TTree          *fChain;   //!pointer to the analyzed TTree or TChain
+      TChain          *fChain;   //!pointer to the analyzed TTree or TChain
       Int_t           fCurrent; //!current Tree number in a TChain
 
       // Declaration of leaf types
@@ -989,12 +989,12 @@ class ZprimeLoop {
       TBranch        *b_mc_mother_energy;   //!
       TBranch        *b_mc_mother_mass;   //!
 
-      ZprimeLoop(TString file = "");
+      ZprimeLoop(std::vector<std::string>& flist,std::string outfilename);
       virtual ~ZprimeLoop();
       virtual Int_t    Cut(Long64_t entry);
       virtual Int_t    GetEntry(Long64_t entry);
       virtual Long64_t LoadTree(Long64_t entry);
-      virtual void     Init(TTree *tree);
+      virtual void     Init();
       virtual void     Loop();
       virtual Bool_t   Notify();
       virtual void     Show(Long64_t entry = -1);
@@ -1010,35 +1010,16 @@ class ZprimeLoop {
 #endif
 
 #ifdef ZprimeLoop_cxx
-ZprimeLoop::ZprimeLoop(TString file) : fChain(0) 
+ZprimeLoop::ZprimeLoop(std::vector<std::string>& paths, std::string outfilename) : fChain(0) 
 {
-   cerr << "TEST file = " << file << endl;
-   TTree* tree = NULL ;
-   // if parameter tree is not specified (or zero), connect the file
-   // used to generate this class and read the Tree.
-   if (file == "") {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("ZprimeToMuMu_M-5000_Tune4C_13TeV-pythia8_PU40bx25_POSTLS162_V2-v1.root");
-      if (!f || !f->IsOpen()) {
-	 f = new TFile("ZprimeToMuMu_M-5000_Tune4C_13TeV-pythia8_PU40bx25_POSTLS162_V2-v1.root");
-      }
-      f->GetObject("IIHEAnalysis",tree);
-
+   fChain = new TChain("IIHEAnalysis");
+   for ( unsigned int i = 0; i < paths.size(); i++ ) {
+     fChain->Add(paths[i].c_str());
    }
-   else {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject(file);
-      if (!f || !f->IsOpen()) {
-	 f = new TFile(file);
-      }
-      f->GetObject("IIHEAnalysis",tree);
-   }
-
-   Init(tree);
+   Init();
 
 #if 1 // RY added
-   Util u;
-   stringstream foutname;
-   foutname << "ZprimeLoop_" << u.GetRootFileNameFromPath(static_cast<const char*>(file.Data())) << ends;
-   fout = new TFile(foutname.str().data(),"RECREATE");
+   fout = new TFile(outfilename.c_str(),"RECREATE");
 #endif
 }
 
@@ -1070,7 +1051,7 @@ Long64_t ZprimeLoop::LoadTree(Long64_t entry)
    return centry;
 }
 
-void ZprimeLoop::Init(TTree *tree)
+void ZprimeLoop::Init()
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the branch addresses and branch
@@ -1457,8 +1438,8 @@ void ZprimeLoop::Init(TTree *tree)
    mc_mother_energy = 0;
    mc_mother_mass = 0;
    // Set branch addresses and branch pointers
-   if (!tree) return;
-   fChain = tree;
+   //if (!tree) return;
+   //fChain = tree;
    fCurrent = -1;
    fChain->SetMakeClass(1);
 
@@ -1940,6 +1921,7 @@ void ZprimeLoop::Init(TTree *tree)
    fChain->SetBranchAddress("mc_mother_energy", &mc_mother_energy, &b_mc_mother_energy);
    fChain->SetBranchAddress("mc_mother_mass", &mc_mother_mass, &b_mc_mother_mass);
    Notify();
+
 }
 
 Bool_t ZprimeLoop::Notify()

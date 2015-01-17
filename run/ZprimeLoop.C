@@ -35,8 +35,10 @@ void ZprimeLoop::Loop()
    //by  b_branchname->GetEntry(ientry); //read only this branch
    if (fChain == 0) return;
 
-   Long64_t nentries = fChain->GetEntriesFast();
+   //Long64_t nentries = fChain->GetEntriesFast();
+   Long64_t nentries = fChain->GetEntries();
 
+   cerr << nentries << endl;
    Long64_t nbytes = 0, nb = 0;
 
 
@@ -121,6 +123,5 @@ void ZprimeLoop::Loop()
 
    //h_mc_ZpMass->Draw() ;
    h_mc_ZpMass->Write();
-   fout->Write();
    fout->Close();
 }
