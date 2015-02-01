@@ -19,10 +19,6 @@
 #include <vector>
 #include <vector>
 
-// RY added
-#include "Util.h"
-#include <sstream>
-#include <iostream>
 using namespace std; 
 // Fixed size dimensions of array or collections stored in the TTree if any.
 
@@ -1000,10 +996,7 @@ class ZprimeLoop {
       virtual void     Show(Long64_t entry = -1);
 
 #if 1 // RY added 
-   // Output root file
-      //string ofname = "Output_" + ifname + ".root";
       TFile* fout;
-	      //(ofname.c_str(),"RECREATE");
 #endif
 };
 
