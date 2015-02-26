@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////////////
 // This class has been automatically generated on
-// Thu Dec  4 15:30:35 2014 by ROOT version 5.34/24
+// Thu Feb 26 14:41:35 2015 by ROOT version 6.02/05
 // from TTree IIHEAnalysis/IIHEAnalysis
-// found on file: ZprimeToMuMu_M-5000_Tune4C_13TeV-pythia8_PU40bx25_PU40bx25_POSTLS162_V2-v1.root
+// found on file: ZprimeToMuMu_M-5000_Tune4C_13TeV-pythia8_tsg_PU40bx25_POSTLS162_V2-v1.root
 //////////////////////////////////////////////////////////
 
 #ifndef ZprimeLoop_h
@@ -13,19 +13,17 @@
 #include <TFile.h>
 
 // Header file for the classes stored in the TTree if any.
-#include <vector>
-#include <vector>
-#include <vector>
-#include <vector>
-#include <vector>
-
-using namespace std; 
-// Fixed size dimensions of array or collections stored in the TTree if any.
+#include "vector"
+#include "vector"
+#include "vector"
+#include "vector"
 
 class ZprimeLoop {
    public :
-      TChain          *fChain;   //!pointer to the analyzed TTree or TChain
+      TTree          *fChain;   //!pointer to the analyzed TTree or TChain
       Int_t           fCurrent; //!current Tree number in a TChain
+
+      // Fixed size dimensions of array or collections stored in the TTree if any.
 
       // Declaration of leaf types
       UInt_t          ev_event;
@@ -177,118 +175,177 @@ class ZprimeLoop {
       vector<float>   *gsf_e5x5;
       vector<float>   *gsf_r9;
       vector<vector<int> > *gsf_hitsinfo;
-      UInt_t          muon_n;
-      vector<int>     *muon_charge;
-      vector<float>   *muon_qoverp;
-      vector<float>   *muon_pt;
-      vector<float>   *muon_eta;
-      vector<float>   *muon_phi;
-      vector<float>   *muon_p;
-      vector<float>   *muon_px;
-      vector<float>   *muon_py;
-      vector<float>   *muon_pz;
-      vector<float>   *muon_theta;
-      vector<float>   *muon_lambda;
-      vector<float>   *muon_dxy;
-      vector<float>   *muon_d0;
-      vector<float>   *muon_dsz;
-      vector<float>   *muon_dz;
-      vector<float>   *muon_dxy_beamSpot;
-      vector<float>   *muon_dxy_firstPVtx;
-      vector<float>   *muon_dz_beamSpot;
-      vector<float>   *muon_dz_firstPVtx;
-      vector<float>   *muon_vx;
-      vector<float>   *muon_vy;
-      vector<float>   *muon_vz;
-      vector<float>   *muon_outerPt;
-      vector<float>   *muon_outerEta;
-      vector<float>   *muon_outerPhi;
-      vector<float>   *muon_outerTheta;
-      vector<int>     *muon_numberOfValidPixelHits;
-      vector<int>     *muon_numberOfValidTrackerHits;
-      vector<int>     *muon_numberOfValidMuonHits;
-      vector<int>     *muon_numberOfValidHits;
-      vector<int>     *muon_trackerLayersWithMeasurement;
-      vector<int>     *muon_numberOfLostHits;
-      vector<int>     *muon_numberOfMatchedStations;
-      vector<double>  *muon_validFraction;
-      vector<bool>    *muon_isGlobalMuon;
-      vector<bool>    *muon_isTrackerMuon;
-      vector<bool>    *muon_isPFMuon;
-      vector<bool>    *muon_isPFIsolationValid;
-      vector<float>   *muon_chi2;
-      vector<float>   *muon_ndof;
-      vector<float>   *muon_normalizedChi2;
-      vector<float>   *muon_qoverpError;
-      vector<float>   *muon_ptError;
-      vector<float>   *muon_thetaError;
-      vector<float>   *muon_lambdaError;
-      vector<float>   *muon_phiError;
-      vector<float>   *muon_dxyError;
-      vector<float>   *muon_d0Error;
-      vector<float>   *muon_dszError;
-      vector<float>   *muon_dzError;
-      vector<float>   *muon_isolationR03_sumPt;
-      vector<float>   *muon_isolationR03_trackerVetoPt;
-      vector<float>   *muon_isolationR03_emEt;
-      vector<float>   *muon_isolationR03_emVetoEt;
-      vector<float>   *muon_isolationR03_hadEt;
-      vector<float>   *muon_isolationR03_hadVetoEt;
-      vector<float>   *muon_isolationR05_sumPt;
-      vector<float>   *muon_isolationR05_trackerVetoPt;
-      vector<float>   *muon_isolationR05_emEt;
-      vector<float>   *muon_isolationR05_emVetoEt;
-      vector<float>   *muon_isolationR05_hadEt;
-      vector<float>   *muon_isolationR05_hadVetoEt;
-      vector<float>   *muon_pfIsolationR03_sumChargedHadronPt;
-      vector<float>   *muon_pfIsolationR03_sumChargedParticlePt;
-      vector<float>   *muon_pfIsolationR03_sumPhotonEt;
-      vector<float>   *muon_pfIsolationR03_sumNeutralHadronEtHighThreshold;
-      vector<float>   *muon_pfIsolationR03_sumPhotonEtHighThreshold;
-      vector<float>   *muon_pfIsolationR03_sumPUPt;
-      vector<float>   *muon_pfIsolationR04_sumChargedHadronPt;
-      vector<float>   *muon_pfIsolationR04_sumChargedParticlePt;
-      vector<float>   *muon_pfIsolationR04_sumPhotonEt;
-      vector<float>   *muon_pfIsolationR04_sumNeutralHadronEtHighThreshold;
-      vector<float>   *muon_pfIsolationR04_sumPhotonEtHighThreshold;
-      vector<float>   *muon_pfIsolationR04_sumPUPt;
-      vector<float>   *muon_pfMeanDRIsoProfileR03_sumChargedHadronPt;
-      vector<float>   *muon_pfMeanDRIsoProfileR03_sumChargedParticlePt;
-      vector<float>   *muon_pfMeanDRIsoProfileR03_sumPhotonEt;
-      vector<float>   *muon_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold;
-      vector<float>   *muon_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold;
-      vector<float>   *muon_pfMeanDRIsoProfileR03_sumPUPt;
-      vector<float>   *muon_pfMeanDRIsoProfileR04_sumChargedHadronPt;
-      vector<float>   *muon_pfMeanDRIsoProfileR04_sumChargedParticlePt;
-      vector<float>   *muon_pfMeanDRIsoProfileR04_sumPhotonEt;
-      vector<float>   *muon_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold;
-      vector<float>   *muon_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold;
-      vector<float>   *muon_pfMeanDRIsoProfileR04_sumPUPt;
-      vector<float>   *muon_innerPosition_x;
-      vector<float>   *muon_innerPosition_y;
-      vector<float>   *muon_innerPosition_z;
-      vector<int>     *muon_tevOptimized_charge;
-      vector<float>   *muon_tevOptimized_pt;
-      vector<float>   *muon_tevOptimized_eta;
-      vector<float>   *muon_tevOptimized_phi;
-      vector<float>   *muon_tevOptimized_theta;
-      vector<float>   *muon_tevOptimized_px;
-      vector<float>   *muon_tevOptimized_py;
-      vector<float>   *muon_tevOptimized_pz;
-      vector<float>   *muon_tevOptimized_d0;
-      vector<float>   *muon_tevOptimized_dz;
-      vector<float>   *muon_tevOptimized_dz_beamSpot;
-      vector<float>   *muon_tevOptimized_dz_firstPVtx;
-      vector<float>   *muon_tevOptimized_dxy;
-      vector<float>   *muon_tevOptimized_dxy_beamSpot;
-      vector<float>   *muon_tevOptimized_dxy_firstPVtx;
-      vector<float>   *muon_tevOptimized_ptError;
-      vector<float>   *muon_tevOptimized_etaError;
-      vector<float>   *muon_tevOptimized_phiError;
-      vector<float>   *muon_tevOptimized_thetaError;
-      vector<float>   *muon_tevOptimized_d0Error;
-      vector<float>   *muon_tevOptimized_dzError;
-      vector<float>   *muon_tevOptimized_dxyError;
+      UInt_t          mu_n;
+      vector<float>   *mu_gt_qoverp;
+      vector<int>     *mu_gt_charge;
+      vector<float>   *mu_gt_pt;
+      vector<float>   *mu_gt_eta;
+      vector<float>   *mu_gt_phi;
+      vector<float>   *mu_gt_p;
+      vector<float>   *mu_gt_px;
+      vector<float>   *mu_gt_py;
+      vector<float>   *mu_gt_pz;
+      vector<float>   *mu_gt_theta;
+      vector<float>   *mu_gt_lambda;
+      vector<float>   *mu_gt_d0;
+      vector<float>   *mu_gt_dz;
+      vector<float>   *mu_gt_dz_beamspot;
+      vector<float>   *mu_gt_dz_firstPVtx;
+      vector<float>   *mu_gt_dxy;
+      vector<float>   *mu_gt_dxy_beamspot;
+      vector<float>   *mu_gt_dxy_firstPVtx;
+      vector<float>   *mu_gt_dsz;
+      vector<float>   *mu_gt_vx;
+      vector<float>   *mu_gt_vy;
+      vector<float>   *mu_gt_vz;
+      vector<float>   *mu_gt_qoverpError;
+      vector<float>   *mu_gt_ptError;
+      vector<float>   *mu_gt_thetaError;
+      vector<float>   *mu_gt_lambdaError;
+      vector<float>   *mu_gt_phiError;
+      vector<float>   *mu_gt_dxyError;
+      vector<float>   *mu_gt_d0Error;
+      vector<float>   *mu_gt_dszError;
+      vector<float>   *mu_gt_dzError;
+      vector<float>   *mu_gt_etaError;
+      vector<float>   *mu_gt_chi2;
+      vector<float>   *mu_gt_ndof;
+      vector<float>   *mu_gt_normalizedChi2;
+      vector<float>   *mu_ot_qoverp;
+      vector<int>     *mu_ot_charge;
+      vector<float>   *mu_ot_pt;
+      vector<float>   *mu_ot_eta;
+      vector<float>   *mu_ot_phi;
+      vector<float>   *mu_ot_p;
+      vector<float>   *mu_ot_px;
+      vector<float>   *mu_ot_py;
+      vector<float>   *mu_ot_pz;
+      vector<float>   *mu_ot_theta;
+      vector<float>   *mu_ot_lambda;
+      vector<float>   *mu_ot_d0;
+      vector<float>   *mu_ot_dz;
+      vector<float>   *mu_ot_dz_beamspot;
+      vector<float>   *mu_ot_dz_firstPVtx;
+      vector<float>   *mu_ot_dxy;
+      vector<float>   *mu_ot_dxy_beamspot;
+      vector<float>   *mu_ot_dxy_firstPVtx;
+      vector<float>   *mu_ot_dsz;
+      vector<float>   *mu_ot_vx;
+      vector<float>   *mu_ot_vy;
+      vector<float>   *mu_ot_vz;
+      vector<float>   *mu_ot_qoverpError;
+      vector<float>   *mu_ot_ptError;
+      vector<float>   *mu_ot_thetaError;
+      vector<float>   *mu_ot_lambdaError;
+      vector<float>   *mu_ot_phiError;
+      vector<float>   *mu_ot_dxyError;
+      vector<float>   *mu_ot_d0Error;
+      vector<float>   *mu_ot_dszError;
+      vector<float>   *mu_ot_dzError;
+      vector<float>   *mu_ot_etaError;
+      vector<float>   *mu_ot_chi2;
+      vector<float>   *mu_ot_ndof;
+      vector<float>   *mu_ot_normalizedChi2;
+      vector<float>   *mu_it_qoverp;
+      vector<int>     *mu_it_charge;
+      vector<float>   *mu_it_pt;
+      vector<float>   *mu_it_eta;
+      vector<float>   *mu_it_phi;
+      vector<float>   *mu_it_p;
+      vector<float>   *mu_it_px;
+      vector<float>   *mu_it_py;
+      vector<float>   *mu_it_pz;
+      vector<float>   *mu_it_theta;
+      vector<float>   *mu_it_lambda;
+      vector<float>   *mu_it_d0;
+      vector<float>   *mu_it_dz;
+      vector<float>   *mu_it_dz_beamspot;
+      vector<float>   *mu_it_dz_firstPVtx;
+      vector<float>   *mu_it_dxy;
+      vector<float>   *mu_it_dxy_beamspot;
+      vector<float>   *mu_it_dxy_firstPVtx;
+      vector<float>   *mu_it_dsz;
+      vector<float>   *mu_it_vx;
+      vector<float>   *mu_it_vy;
+      vector<float>   *mu_it_vz;
+      vector<float>   *mu_it_qoverpError;
+      vector<float>   *mu_it_ptError;
+      vector<float>   *mu_it_thetaError;
+      vector<float>   *mu_it_lambdaError;
+      vector<float>   *mu_it_phiError;
+      vector<float>   *mu_it_dxyError;
+      vector<float>   *mu_it_d0Error;
+      vector<float>   *mu_it_dszError;
+      vector<float>   *mu_it_dzError;
+      vector<float>   *mu_it_etaError;
+      vector<float>   *mu_it_chi2;
+      vector<float>   *mu_it_ndof;
+      vector<float>   *mu_it_normalizedChi2;
+      vector<bool>    *mu_isGlobalMuon;
+      vector<bool>    *mu_isStandAloneMuon;
+      vector<bool>    *mu_isTrackerMuon;
+      vector<bool>    *mu_isPFMuon;
+      vector<bool>    *mu_isPFIsolationValid;
+      vector<int>     *mu_numberOfMatchedStations;
+      vector<int>     *mu_numberOfValidPixelHits;
+      vector<int>     *mu_tevOptimized_charge;
+      vector<float>   *mu_tevOptimized_pt;
+      vector<float>   *mu_tevOptimized_eta;
+      vector<float>   *mu_tevOptimized_phi;
+      vector<float>   *mu_tevOptimized_theta;
+      vector<float>   *mu_tevOptimized_px;
+      vector<float>   *mu_tevOptimized_py;
+      vector<float>   *mu_tevOptimized_pz;
+      vector<float>   *mu_tevOptimized_d0;
+      vector<float>   *mu_tevOptimized_dz;
+      vector<float>   *mu_tevOptimized_dz_beamSpot;
+      vector<float>   *mu_tevOptimized_dz_firstPVtx;
+      vector<float>   *mu_tevOptimized_dxy;
+      vector<float>   *mu_tevOptimized_dxy_beamSpot;
+      vector<float>   *mu_tevOptimized_dxy_firstPVtx;
+      vector<float>   *mu_tevOptimized_ptError;
+      vector<float>   *mu_tevOptimized_etaError;
+      vector<float>   *mu_tevOptimized_phiError;
+      vector<float>   *mu_tevOptimized_thetaError;
+      vector<float>   *mu_tevOptimized_d0Error;
+      vector<float>   *mu_tevOptimized_dzError;
+      vector<float>   *mu_tevOptimized_dxyError;
+      vector<float>   *mu_isolationR03_sumPt;
+      vector<float>   *mu_isolationR03_trackerVetoPt;
+      vector<float>   *mu_isolationR03_emEt;
+      vector<float>   *mu_isolationR03_emVetoEt;
+      vector<float>   *mu_isolationR03_hadEt;
+      vector<float>   *mu_isolationR03_hadVetoEt;
+      vector<float>   *mu_isolationR05_sumPt;
+      vector<float>   *mu_isolationR05_trackerVetoPt;
+      vector<float>   *mu_isolationR05_emEt;
+      vector<float>   *mu_isolationR05_emVetoEt;
+      vector<float>   *mu_isolationR05_hadEt;
+      vector<float>   *mu_isolationR05_hadVetoEt;
+      vector<float>   *mu_pfIsolationR03_sumChargedHadronPt;
+      vector<float>   *mu_pfIsolationR03_sumChargedParticlePt;
+      vector<float>   *mu_pfIsolationR03_sumPhotonEt;
+      vector<float>   *mu_pfIsolationR03_sumNeutralHadronEtHighThreshold;
+      vector<float>   *mu_pfIsolationR03_sumPhotonEtHighThreshold;
+      vector<float>   *mu_pfIsolationR03_sumPUPt;
+      vector<float>   *mu_pfIsolationR04_sumChargedHadronPt;
+      vector<float>   *mu_pfIsolationR04_sumChargedParticlePt;
+      vector<float>   *mu_pfIsolationR04_sumPhotonEt;
+      vector<float>   *mu_pfIsolationR04_sumNeutralHadronEtHighThreshold;
+      vector<float>   *mu_pfIsolationR04_sumPhotonEtHighThreshold;
+      vector<float>   *mu_pfIsolationR04_sumPUPt;
+      vector<float>   *mu_pfMeanDRIsoProfileR03_sumChargedHadronPt;
+      vector<float>   *mu_pfMeanDRIsoProfileR03_sumChargedParticlePt;
+      vector<float>   *mu_pfMeanDRIsoProfileR03_sumPhotonEt;
+      vector<float>   *mu_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold;
+      vector<float>   *mu_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold;
+      vector<float>   *mu_pfMeanDRIsoProfileR03_sumPUPt;
+      vector<float>   *mu_pfMeanDRIsoProfileR04_sumChargedHadronPt;
+      vector<float>   *mu_pfMeanDRIsoProfileR04_sumChargedParticlePt;
+      vector<float>   *mu_pfMeanDRIsoProfileR04_sumPhotonEt;
+      vector<float>   *mu_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold;
+      vector<float>   *mu_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold;
+      vector<float>   *mu_pfMeanDRIsoProfileR04_sumPUPt;
       Float_t         MET_met_et;
       Float_t         MET_met_phi;
       Float_t         MET_pfMet_et;
@@ -505,6 +562,20 @@ class ZprimeLoop {
       vector<vector<float> > *mc_mother_phi;
       vector<vector<float> > *mc_mother_energy;
       vector<vector<float> > *mc_mother_mass;
+      vector<bool>    *gsf_triggerMatch_hltL1sL1SingleEG12;
+      vector<bool>    *gsf_triggerMatch_hltL1sL1Mu3p5EG12;
+      vector<bool>    *gsf_triggerMatch_hltL1sL1SingleEG22;
+      vector<bool>    *gsf_triggerMatch_hltEle33CaloIdLPixelMatchFilter;
+      vector<bool>    *gsf_triggerMatch_hltDiEle33CaloIdLGsfTrkIdVLDPhiDoubleFilter;
+      vector<bool>    *gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoFilter;
+      vector<bool>    *gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoDoubleFilter;
+      vector<bool>    *gsf_triggerMatch_hltEle32CaloIdTCaloIsoTTrkIdTTrkIsoTSC17TrackIsoFilter;
+      vector<bool>    *gsf_triggerMatch_hltEle27WP80TrackIsoFilter;
+      vector<bool>    *gsf_triggerMatch_hltMu22Photon22CaloIdLHEFilter;
+      vector<bool>    *hltL1sMu16Eta2p1;
+      vector<bool>    *hltL1sL1Mu3p5EG12;
+      vector<bool>    *hltL1Mu3p5EG12L3Filtered22;
+      vector<bool>    *hltL3fL1sMu16Eta2p1L1f0L2f16QL3Filtered40Q;
 
       // List of branches
       TBranch        *b_ev_event;   //!
@@ -656,118 +727,177 @@ class ZprimeLoop {
       TBranch        *b_gsf_e5x5;   //!
       TBranch        *b_gsf_r9;   //!
       TBranch        *b_gsf_hitsinfo;   //!
-      TBranch        *b_muon_n;   //!
-      TBranch        *b_muon_charge;   //!
-      TBranch        *b_muon_qoverp;   //!
-      TBranch        *b_muon_pt;   //!
-      TBranch        *b_muon_eta;   //!
-      TBranch        *b_muon_phi;   //!
-      TBranch        *b_muon_p;   //!
-      TBranch        *b_muon_px;   //!
-      TBranch        *b_muon_py;   //!
-      TBranch        *b_muon_pz;   //!
-      TBranch        *b_muon_theta;   //!
-      TBranch        *b_muon_lambda;   //!
-      TBranch        *b_muon_dxy;   //!
-      TBranch        *b_muon_d0;   //!
-      TBranch        *b_muon_dsz;   //!
-      TBranch        *b_muon_dz;   //!
-      TBranch        *b_muon_dxy_beamSpot;   //!
-      TBranch        *b_muon_dxy_firstPVtx;   //!
-      TBranch        *b_muon_dz_beamSpot;   //!
-      TBranch        *b_muon_dz_firstPVtx;   //!
-      TBranch        *b_muon_vx;   //!
-      TBranch        *b_muon_vy;   //!
-      TBranch        *b_muon_vz;   //!
-      TBranch        *b_muon_outerPt;   //!
-      TBranch        *b_muon_outerEta;   //!
-      TBranch        *b_muon_outerPhi;   //!
-      TBranch        *b_muon_outerTheta;   //!
-      TBranch        *b_muon_numberOfValidPixelHits;   //!
-      TBranch        *b_muon_numberOfValidTrackerHits;   //!
-      TBranch        *b_muon_numberOfValidMuonHits;   //!
-      TBranch        *b_muon_numberOfValidHits;   //!
-      TBranch        *b_muon_trackerLayersWithMeasurement;   //!
-      TBranch        *b_muon_numberOfLostHits;   //!
-      TBranch        *b_muon_numberOfMatchedStations;   //!
-      TBranch        *b_muon_validFraction;   //!
-      TBranch        *b_muon_isGlobalMuon;   //!
-      TBranch        *b_muon_isTrackerMuon;   //!
-      TBranch        *b_muon_isPFMuon;   //!
-      TBranch        *b_muon_isPFIsolationValid;   //!
-      TBranch        *b_muon_chi2;   //!
-      TBranch        *b_muon_ndof;   //!
-      TBranch        *b_muon_normalizedChi2;   //!
-      TBranch        *b_muon_qoverpError;   //!
-      TBranch        *b_muon_ptError;   //!
-      TBranch        *b_muon_thetaError;   //!
-      TBranch        *b_muon_lambdaError;   //!
-      TBranch        *b_muon_phiError;   //!
-      TBranch        *b_muon_dxyError;   //!
-      TBranch        *b_muon_d0Error;   //!
-      TBranch        *b_muon_dszError;   //!
-      TBranch        *b_muon_dzError;   //!
-      TBranch        *b_muon_isolationR03_sumPt;   //!
-      TBranch        *b_muon_isolationR03_trackerVetoPt;   //!
-      TBranch        *b_muon_isolationR03_emEt;   //!
-      TBranch        *b_muon_isolationR03_emVetoEt;   //!
-      TBranch        *b_muon_isolationR03_hadEt;   //!
-      TBranch        *b_muon_isolationR03_hadVetoEt;   //!
-      TBranch        *b_muon_isolationR05_sumPt;   //!
-      TBranch        *b_muon_isolationR05_trackerVetoPt;   //!
-      TBranch        *b_muon_isolationR05_emEt;   //!
-      TBranch        *b_muon_isolationR05_emVetoEt;   //!
-      TBranch        *b_muon_isolationR05_hadEt;   //!
-      TBranch        *b_muon_isolationR05_hadVetoEt;   //!
-      TBranch        *b_muon_pfIsolationR03_sumChargedHadronPt;   //!
-      TBranch        *b_muon_pfIsolationR03_sumChargedParticlePt;   //!
-      TBranch        *b_muon_pfIsolationR03_sumPhotonEt;   //!
-      TBranch        *b_muon_pfIsolationR03_sumNeutralHadronEtHighThreshold;   //!
-      TBranch        *b_muon_pfIsolationR03_sumPhotonEtHighThreshold;   //!
-      TBranch        *b_muon_pfIsolationR03_sumPUPt;   //!
-      TBranch        *b_muon_pfIsolationR04_sumChargedHadronPt;   //!
-      TBranch        *b_muon_pfIsolationR04_sumChargedParticlePt;   //!
-      TBranch        *b_muon_pfIsolationR04_sumPhotonEt;   //!
-      TBranch        *b_muon_pfIsolationR04_sumNeutralHadronEtHighThreshold;   //!
-      TBranch        *b_muon_pfIsolationR04_sumPhotonEtHighThreshold;   //!
-      TBranch        *b_muon_pfIsolationR04_sumPUPt;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR03_sumChargedHadronPt;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR03_sumChargedParticlePt;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR03_sumPhotonEt;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR03_sumPUPt;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR04_sumChargedHadronPt;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR04_sumChargedParticlePt;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR04_sumPhotonEt;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold;   //!
-      TBranch        *b_muon_pfMeanDRIsoProfileR04_sumPUPt;   //!
-      TBranch        *b_muon_innerPosition_x;   //!
-      TBranch        *b_muon_innerPosition_y;   //!
-      TBranch        *b_muon_innerPosition_z;   //!
-      TBranch        *b_muon_tevOptimized_charge;   //!
-      TBranch        *b_muon_tevOptimized_pt;   //!
-      TBranch        *b_muon_tevOptimized_eta;   //!
-      TBranch        *b_muon_tevOptimized_phi;   //!
-      TBranch        *b_muon_tevOptimized_theta;   //!
-      TBranch        *b_muon_tevOptimized_px;   //!
-      TBranch        *b_muon_tevOptimized_py;   //!
-      TBranch        *b_muon_tevOptimized_pz;   //!
-      TBranch        *b_muon_tevOptimized_d0;   //!
-      TBranch        *b_muon_tevOptimized_dz;   //!
-      TBranch        *b_muon_tevOptimized_dz_beamSpot;   //!
-      TBranch        *b_muon_tevOptimized_dz_firstPVtx;   //!
-      TBranch        *b_muon_tevOptimized_dxy;   //!
-      TBranch        *b_muon_tevOptimized_dxy_beamSpot;   //!
-      TBranch        *b_muon_tevOptimized_dxy_firstPVtx;   //!
-      TBranch        *b_muon_tevOptimized_ptError;   //!
-      TBranch        *b_muon_tevOptimized_etaError;   //!
-      TBranch        *b_muon_tevOptimized_phiError;   //!
-      TBranch        *b_muon_tevOptimized_thetaError;   //!
-      TBranch        *b_muon_tevOptimized_d0Error;   //!
-      TBranch        *b_muon_tevOptimized_dzError;   //!
-      TBranch        *b_muon_tevOptimized_dxyError;   //!
+      TBranch        *b_mu_n;   //!
+      TBranch        *b_mu_gt_qoverp;   //!
+      TBranch        *b_mu_gt_charge;   //!
+      TBranch        *b_mu_gt_pt;   //!
+      TBranch        *b_mu_gt_eta;   //!
+      TBranch        *b_mu_gt_phi;   //!
+      TBranch        *b_mu_gt_p;   //!
+      TBranch        *b_mu_gt_px;   //!
+      TBranch        *b_mu_gt_py;   //!
+      TBranch        *b_mu_gt_pz;   //!
+      TBranch        *b_mu_gt_theta;   //!
+      TBranch        *b_mu_gt_lambda;   //!
+      TBranch        *b_mu_gt_d0;   //!
+      TBranch        *b_mu_gt_dz;   //!
+      TBranch        *b_mu_gt_dz_beamspot;   //!
+      TBranch        *b_mu_gt_dz_firstPVtx;   //!
+      TBranch        *b_mu_gt_dxy;   //!
+      TBranch        *b_mu_gt_dxy_beamspot;   //!
+      TBranch        *b_mu_gt_dxy_firstPVtx;   //!
+      TBranch        *b_mu_gt_dsz;   //!
+      TBranch        *b_mu_gt_vx;   //!
+      TBranch        *b_mu_gt_vy;   //!
+      TBranch        *b_mu_gt_vz;   //!
+      TBranch        *b_mu_gt_qoverpError;   //!
+      TBranch        *b_mu_gt_ptError;   //!
+      TBranch        *b_mu_gt_thetaError;   //!
+      TBranch        *b_mu_gt_lambdaError;   //!
+      TBranch        *b_mu_gt_phiError;   //!
+      TBranch        *b_mu_gt_dxyError;   //!
+      TBranch        *b_mu_gt_d0Error;   //!
+      TBranch        *b_mu_gt_dszError;   //!
+      TBranch        *b_mu_gt_dzError;   //!
+      TBranch        *b_mu_gt_etaError;   //!
+      TBranch        *b_mu_gt_chi2;   //!
+      TBranch        *b_mu_gt_ndof;   //!
+      TBranch        *b_mu_gt_normalizedChi2;   //!
+      TBranch        *b_mu_ot_qoverp;   //!
+      TBranch        *b_mu_ot_charge;   //!
+      TBranch        *b_mu_ot_pt;   //!
+      TBranch        *b_mu_ot_eta;   //!
+      TBranch        *b_mu_ot_phi;   //!
+      TBranch        *b_mu_ot_p;   //!
+      TBranch        *b_mu_ot_px;   //!
+      TBranch        *b_mu_ot_py;   //!
+      TBranch        *b_mu_ot_pz;   //!
+      TBranch        *b_mu_ot_theta;   //!
+      TBranch        *b_mu_ot_lambda;   //!
+      TBranch        *b_mu_ot_d0;   //!
+      TBranch        *b_mu_ot_dz;   //!
+      TBranch        *b_mu_ot_dz_beamspot;   //!
+      TBranch        *b_mu_ot_dz_firstPVtx;   //!
+      TBranch        *b_mu_ot_dxy;   //!
+      TBranch        *b_mu_ot_dxy_beamspot;   //!
+      TBranch        *b_mu_ot_dxy_firstPVtx;   //!
+      TBranch        *b_mu_ot_dsz;   //!
+      TBranch        *b_mu_ot_vx;   //!
+      TBranch        *b_mu_ot_vy;   //!
+      TBranch        *b_mu_ot_vz;   //!
+      TBranch        *b_mu_ot_qoverpError;   //!
+      TBranch        *b_mu_ot_ptError;   //!
+      TBranch        *b_mu_ot_thetaError;   //!
+      TBranch        *b_mu_ot_lambdaError;   //!
+      TBranch        *b_mu_ot_phiError;   //!
+      TBranch        *b_mu_ot_dxyError;   //!
+      TBranch        *b_mu_ot_d0Error;   //!
+      TBranch        *b_mu_ot_dszError;   //!
+      TBranch        *b_mu_ot_dzError;   //!
+      TBranch        *b_mu_ot_etaError;   //!
+      TBranch        *b_mu_ot_chi2;   //!
+      TBranch        *b_mu_ot_ndof;   //!
+      TBranch        *b_mu_ot_normalizedChi2;   //!
+      TBranch        *b_mu_it_qoverp;   //!
+      TBranch        *b_mu_it_charge;   //!
+      TBranch        *b_mu_it_pt;   //!
+      TBranch        *b_mu_it_eta;   //!
+      TBranch        *b_mu_it_phi;   //!
+      TBranch        *b_mu_it_p;   //!
+      TBranch        *b_mu_it_px;   //!
+      TBranch        *b_mu_it_py;   //!
+      TBranch        *b_mu_it_pz;   //!
+      TBranch        *b_mu_it_theta;   //!
+      TBranch        *b_mu_it_lambda;   //!
+      TBranch        *b_mu_it_d0;   //!
+      TBranch        *b_mu_it_dz;   //!
+      TBranch        *b_mu_it_dz_beamspot;   //!
+      TBranch        *b_mu_it_dz_firstPVtx;   //!
+      TBranch        *b_mu_it_dxy;   //!
+      TBranch        *b_mu_it_dxy_beamspot;   //!
+      TBranch        *b_mu_it_dxy_firstPVtx;   //!
+      TBranch        *b_mu_it_dsz;   //!
+      TBranch        *b_mu_it_vx;   //!
+      TBranch        *b_mu_it_vy;   //!
+      TBranch        *b_mu_it_vz;   //!
+      TBranch        *b_mu_it_qoverpError;   //!
+      TBranch        *b_mu_it_ptError;   //!
+      TBranch        *b_mu_it_thetaError;   //!
+      TBranch        *b_mu_it_lambdaError;   //!
+      TBranch        *b_mu_it_phiError;   //!
+      TBranch        *b_mu_it_dxyError;   //!
+      TBranch        *b_mu_it_d0Error;   //!
+      TBranch        *b_mu_it_dszError;   //!
+      TBranch        *b_mu_it_dzError;   //!
+      TBranch        *b_mu_it_etaError;   //!
+      TBranch        *b_mu_it_chi2;   //!
+      TBranch        *b_mu_it_ndof;   //!
+      TBranch        *b_mu_it_normalizedChi2;   //!
+      TBranch        *b_mu_isGlobalMuon;   //!
+      TBranch        *b_mu_isStandAloneMuon;   //!
+      TBranch        *b_mu_isTrackerMuon;   //!
+      TBranch        *b_mu_isPFMuon;   //!
+      TBranch        *b_mu_isPFIsolationValid;   //!
+      TBranch        *b_mu_numberOfMatchedStations;   //!
+      TBranch        *b_mu_numberOfValidPixelHits;   //!
+      TBranch        *b_mu_tevOptimized_charge;   //!
+      TBranch        *b_mu_tevOptimized_pt;   //!
+      TBranch        *b_mu_tevOptimized_eta;   //!
+      TBranch        *b_mu_tevOptimized_phi;   //!
+      TBranch        *b_mu_tevOptimized_theta;   //!
+      TBranch        *b_mu_tevOptimized_px;   //!
+      TBranch        *b_mu_tevOptimized_py;   //!
+      TBranch        *b_mu_tevOptimized_pz;   //!
+      TBranch        *b_mu_tevOptimized_d0;   //!
+      TBranch        *b_mu_tevOptimized_dz;   //!
+      TBranch        *b_mu_tevOptimized_dz_beamSpot;   //!
+      TBranch        *b_mu_tevOptimized_dz_firstPVtx;   //!
+      TBranch        *b_mu_tevOptimized_dxy;   //!
+      TBranch        *b_mu_tevOptimized_dxy_beamSpot;   //!
+      TBranch        *b_mu_tevOptimized_dxy_firstPVtx;   //!
+      TBranch        *b_mu_tevOptimized_ptError;   //!
+      TBranch        *b_mu_tevOptimized_etaError;   //!
+      TBranch        *b_mu_tevOptimized_phiError;   //!
+      TBranch        *b_mu_tevOptimized_thetaError;   //!
+      TBranch        *b_mu_tevOptimized_d0Error;   //!
+      TBranch        *b_mu_tevOptimized_dzError;   //!
+      TBranch        *b_mu_tevOptimized_dxyError;   //!
+      TBranch        *b_mu_isolationR03_sumPt;   //!
+      TBranch        *b_mu_isolationR03_trackerVetoPt;   //!
+      TBranch        *b_mu_isolationR03_emEt;   //!
+      TBranch        *b_mu_isolationR03_emVetoEt;   //!
+      TBranch        *b_mu_isolationR03_hadEt;   //!
+      TBranch        *b_mu_isolationR03_hadVetoEt;   //!
+      TBranch        *b_mu_isolationR05_sumPt;   //!
+      TBranch        *b_mu_isolationR05_trackerVetoPt;   //!
+      TBranch        *b_mu_isolationR05_emEt;   //!
+      TBranch        *b_mu_isolationR05_emVetoEt;   //!
+      TBranch        *b_mu_isolationR05_hadEt;   //!
+      TBranch        *b_mu_isolationR05_hadVetoEt;   //!
+      TBranch        *b_mu_pfIsolationR03_sumChargedHadronPt;   //!
+      TBranch        *b_mu_pfIsolationR03_sumChargedParticlePt;   //!
+      TBranch        *b_mu_pfIsolationR03_sumPhotonEt;   //!
+      TBranch        *b_mu_pfIsolationR03_sumNeutralHadronEtHighThreshold;   //!
+      TBranch        *b_mu_pfIsolationR03_sumPhotonEtHighThreshold;   //!
+      TBranch        *b_mu_pfIsolationR03_sumPUPt;   //!
+      TBranch        *b_mu_pfIsolationR04_sumChargedHadronPt;   //!
+      TBranch        *b_mu_pfIsolationR04_sumChargedParticlePt;   //!
+      TBranch        *b_mu_pfIsolationR04_sumPhotonEt;   //!
+      TBranch        *b_mu_pfIsolationR04_sumNeutralHadronEtHighThreshold;   //!
+      TBranch        *b_mu_pfIsolationR04_sumPhotonEtHighThreshold;   //!
+      TBranch        *b_mu_pfIsolationR04_sumPUPt;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR03_sumChargedHadronPt;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR03_sumChargedParticlePt;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR03_sumPhotonEt;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR03_sumPUPt;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR04_sumChargedHadronPt;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR04_sumChargedParticlePt;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR04_sumPhotonEt;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold;   //!
+      TBranch        *b_mu_pfMeanDRIsoProfileR04_sumPUPt;   //!
       TBranch        *b_MET_met_et;   //!
       TBranch        *b_MET_met_phi;   //!
       TBranch        *b_MET_pfMet_et;   //!
@@ -984,20 +1114,30 @@ class ZprimeLoop {
       TBranch        *b_mc_mother_phi;   //!
       TBranch        *b_mc_mother_energy;   //!
       TBranch        *b_mc_mother_mass;   //!
+      TBranch        *b_gsf_triggerMatch_hltL1sL1SingleEG12;   //!
+      TBranch        *b_gsf_triggerMatch_hltL1sL1Mu3p5EG12;   //!
+      TBranch        *b_gsf_triggerMatch_hltL1sL1SingleEG22;   //!
+      TBranch        *b_gsf_triggerMatch_hltEle33CaloIdLPixelMatchFilter;   //!
+      TBranch        *b_gsf_triggerMatch_hltDiEle33CaloIdLGsfTrkIdVLDPhiDoubleFilter;   //!
+      TBranch        *b_gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoFilter;   //!
+      TBranch        *b_gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoDoubleFilter;   //!
+      TBranch        *b_gsf_triggerMatch_hltEle32CaloIdTCaloIsoTTrkIdTTrkIsoTSC17TrackIsoFilter;   //!
+      TBranch        *b_gsf_triggerMatch_hltEle27WP80TrackIsoFilter;   //!
+      TBranch        *b_gsf_triggerMatch_hltMu22Photon22CaloIdLHEFilter;   //!
+      TBranch        *b_hltL1sMu16Eta2p1;   //!
+      TBranch        *b_hltL1sL1Mu3p5EG12;   //!
+      TBranch        *b_hltL1Mu3p5EG12L3Filtered22;   //!
+      TBranch        *b_hltL3fL1sMu16Eta2p1L1f0L2f16QL3Filtered40Q;   //!
 
       ZprimeLoop(std::vector<std::string>& flist,std::string outfilename);
       virtual ~ZprimeLoop();
       virtual Int_t    Cut(Long64_t entry);
       virtual Int_t    GetEntry(Long64_t entry);
       virtual Long64_t LoadTree(Long64_t entry);
-      virtual void     Init();
+      virtual void     Init(TTree *tree);
       virtual void     Loop();
       virtual Bool_t   Notify();
       virtual void     Show(Long64_t entry = -1);
-
-#if 1 // RY added 
-      TFile* fout;
-#endif
 };
 
 #endif
@@ -1007,7 +1147,7 @@ ZprimeLoop::ZprimeLoop(std::vector<std::string>& paths, std::string outfilename)
 {
    fChain = new TChain("IIHEAnalysis");
    for ( unsigned int i = 0; i < paths.size(); i++ ) {
-     fChain->Add(paths[i].c_str());
+      fChain->Add(paths[i].c_str());
    }
    Init();
 
@@ -1023,6 +1163,7 @@ ZprimeLoop::~ZprimeLoop()
 #if 1 // RY added
    delete fout;
 #endif
+
 }
 
 Int_t ZprimeLoop::GetEntry(Long64_t entry)
@@ -1044,7 +1185,7 @@ Long64_t ZprimeLoop::LoadTree(Long64_t entry)
    return centry;
 }
 
-void ZprimeLoop::Init()
+void ZprimeLoop::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the branch addresses and branch
@@ -1197,117 +1338,176 @@ void ZprimeLoop::Init()
    gsf_e5x5 = 0;
    gsf_r9 = 0;
    gsf_hitsinfo = 0;
-   muon_charge = 0;
-   muon_qoverp = 0;
-   muon_pt = 0;
-   muon_eta = 0;
-   muon_phi = 0;
-   muon_p = 0;
-   muon_px = 0;
-   muon_py = 0;
-   muon_pz = 0;
-   muon_theta = 0;
-   muon_lambda = 0;
-   muon_dxy = 0;
-   muon_d0 = 0;
-   muon_dsz = 0;
-   muon_dz = 0;
-   muon_dxy_beamSpot = 0;
-   muon_dxy_firstPVtx = 0;
-   muon_dz_beamSpot = 0;
-   muon_dz_firstPVtx = 0;
-   muon_vx = 0;
-   muon_vy = 0;
-   muon_vz = 0;
-   muon_outerPt = 0;
-   muon_outerEta = 0;
-   muon_outerPhi = 0;
-   muon_outerTheta = 0;
-   muon_numberOfValidPixelHits = 0;
-   muon_numberOfValidTrackerHits = 0;
-   muon_numberOfValidMuonHits = 0;
-   muon_numberOfValidHits = 0;
-   muon_trackerLayersWithMeasurement = 0;
-   muon_numberOfLostHits = 0;
-   muon_numberOfMatchedStations = 0;
-   muon_validFraction = 0;
-   muon_isGlobalMuon = 0;
-   muon_isTrackerMuon = 0;
-   muon_isPFMuon = 0;
-   muon_isPFIsolationValid = 0;
-   muon_chi2 = 0;
-   muon_ndof = 0;
-   muon_normalizedChi2 = 0;
-   muon_qoverpError = 0;
-   muon_ptError = 0;
-   muon_thetaError = 0;
-   muon_lambdaError = 0;
-   muon_phiError = 0;
-   muon_dxyError = 0;
-   muon_d0Error = 0;
-   muon_dszError = 0;
-   muon_dzError = 0;
-   muon_isolationR03_sumPt = 0;
-   muon_isolationR03_trackerVetoPt = 0;
-   muon_isolationR03_emEt = 0;
-   muon_isolationR03_emVetoEt = 0;
-   muon_isolationR03_hadEt = 0;
-   muon_isolationR03_hadVetoEt = 0;
-   muon_isolationR05_sumPt = 0;
-   muon_isolationR05_trackerVetoPt = 0;
-   muon_isolationR05_emEt = 0;
-   muon_isolationR05_emVetoEt = 0;
-   muon_isolationR05_hadEt = 0;
-   muon_isolationR05_hadVetoEt = 0;
-   muon_pfIsolationR03_sumChargedHadronPt = 0;
-   muon_pfIsolationR03_sumChargedParticlePt = 0;
-   muon_pfIsolationR03_sumPhotonEt = 0;
-   muon_pfIsolationR03_sumNeutralHadronEtHighThreshold = 0;
-   muon_pfIsolationR03_sumPhotonEtHighThreshold = 0;
-   muon_pfIsolationR03_sumPUPt = 0;
-   muon_pfIsolationR04_sumChargedHadronPt = 0;
-   muon_pfIsolationR04_sumChargedParticlePt = 0;
-   muon_pfIsolationR04_sumPhotonEt = 0;
-   muon_pfIsolationR04_sumNeutralHadronEtHighThreshold = 0;
-   muon_pfIsolationR04_sumPhotonEtHighThreshold = 0;
-   muon_pfIsolationR04_sumPUPt = 0;
-   muon_pfMeanDRIsoProfileR03_sumChargedHadronPt = 0;
-   muon_pfMeanDRIsoProfileR03_sumChargedParticlePt = 0;
-   muon_pfMeanDRIsoProfileR03_sumPhotonEt = 0;
-   muon_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold = 0;
-   muon_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold = 0;
-   muon_pfMeanDRIsoProfileR03_sumPUPt = 0;
-   muon_pfMeanDRIsoProfileR04_sumChargedHadronPt = 0;
-   muon_pfMeanDRIsoProfileR04_sumChargedParticlePt = 0;
-   muon_pfMeanDRIsoProfileR04_sumPhotonEt = 0;
-   muon_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold = 0;
-   muon_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold = 0;
-   muon_pfMeanDRIsoProfileR04_sumPUPt = 0;
-   muon_innerPosition_x = 0;
-   muon_innerPosition_y = 0;
-   muon_innerPosition_z = 0;
-   muon_tevOptimized_charge = 0;
-   muon_tevOptimized_pt = 0;
-   muon_tevOptimized_eta = 0;
-   muon_tevOptimized_phi = 0;
-   muon_tevOptimized_theta = 0;
-   muon_tevOptimized_px = 0;
-   muon_tevOptimized_py = 0;
-   muon_tevOptimized_pz = 0;
-   muon_tevOptimized_d0 = 0;
-   muon_tevOptimized_dz = 0;
-   muon_tevOptimized_dz_beamSpot = 0;
-   muon_tevOptimized_dz_firstPVtx = 0;
-   muon_tevOptimized_dxy = 0;
-   muon_tevOptimized_dxy_beamSpot = 0;
-   muon_tevOptimized_dxy_firstPVtx = 0;
-   muon_tevOptimized_ptError = 0;
-   muon_tevOptimized_etaError = 0;
-   muon_tevOptimized_phiError = 0;
-   muon_tevOptimized_thetaError = 0;
-   muon_tevOptimized_d0Error = 0;
-   muon_tevOptimized_dzError = 0;
-   muon_tevOptimized_dxyError = 0;
+   mu_gt_qoverp = 0;
+   mu_gt_charge = 0;
+   mu_gt_pt = 0;
+   mu_gt_eta = 0;
+   mu_gt_phi = 0;
+   mu_gt_p = 0;
+   mu_gt_px = 0;
+   mu_gt_py = 0;
+   mu_gt_pz = 0;
+   mu_gt_theta = 0;
+   mu_gt_lambda = 0;
+   mu_gt_d0 = 0;
+   mu_gt_dz = 0;
+   mu_gt_dz_beamspot = 0;
+   mu_gt_dz_firstPVtx = 0;
+   mu_gt_dxy = 0;
+   mu_gt_dxy_beamspot = 0;
+   mu_gt_dxy_firstPVtx = 0;
+   mu_gt_dsz = 0;
+   mu_gt_vx = 0;
+   mu_gt_vy = 0;
+   mu_gt_vz = 0;
+   mu_gt_qoverpError = 0;
+   mu_gt_ptError = 0;
+   mu_gt_thetaError = 0;
+   mu_gt_lambdaError = 0;
+   mu_gt_phiError = 0;
+   mu_gt_dxyError = 0;
+   mu_gt_d0Error = 0;
+   mu_gt_dszError = 0;
+   mu_gt_dzError = 0;
+   mu_gt_etaError = 0;
+   mu_gt_chi2 = 0;
+   mu_gt_ndof = 0;
+   mu_gt_normalizedChi2 = 0;
+   mu_ot_qoverp = 0;
+   mu_ot_charge = 0;
+   mu_ot_pt = 0;
+   mu_ot_eta = 0;
+   mu_ot_phi = 0;
+   mu_ot_p = 0;
+   mu_ot_px = 0;
+   mu_ot_py = 0;
+   mu_ot_pz = 0;
+   mu_ot_theta = 0;
+   mu_ot_lambda = 0;
+   mu_ot_d0 = 0;
+   mu_ot_dz = 0;
+   mu_ot_dz_beamspot = 0;
+   mu_ot_dz_firstPVtx = 0;
+   mu_ot_dxy = 0;
+   mu_ot_dxy_beamspot = 0;
+   mu_ot_dxy_firstPVtx = 0;
+   mu_ot_dsz = 0;
+   mu_ot_vx = 0;
+   mu_ot_vy = 0;
+   mu_ot_vz = 0;
+   mu_ot_qoverpError = 0;
+   mu_ot_ptError = 0;
+   mu_ot_thetaError = 0;
+   mu_ot_lambdaError = 0;
+   mu_ot_phiError = 0;
+   mu_ot_dxyError = 0;
+   mu_ot_d0Error = 0;
+   mu_ot_dszError = 0;
+   mu_ot_dzError = 0;
+   mu_ot_etaError = 0;
+   mu_ot_chi2 = 0;
+   mu_ot_ndof = 0;
+   mu_ot_normalizedChi2 = 0;
+   mu_it_qoverp = 0;
+   mu_it_charge = 0;
+   mu_it_pt = 0;
+   mu_it_eta = 0;
+   mu_it_phi = 0;
+   mu_it_p = 0;
+   mu_it_px = 0;
+   mu_it_py = 0;
+   mu_it_pz = 0;
+   mu_it_theta = 0;
+   mu_it_lambda = 0;
+   mu_it_d0 = 0;
+   mu_it_dz = 0;
+   mu_it_dz_beamspot = 0;
+   mu_it_dz_firstPVtx = 0;
+   mu_it_dxy = 0;
+   mu_it_dxy_beamspot = 0;
+   mu_it_dxy_firstPVtx = 0;
+   mu_it_dsz = 0;
+   mu_it_vx = 0;
+   mu_it_vy = 0;
+   mu_it_vz = 0;
+   mu_it_qoverpError = 0;
+   mu_it_ptError = 0;
+   mu_it_thetaError = 0;
+   mu_it_lambdaError = 0;
+   mu_it_phiError = 0;
+   mu_it_dxyError = 0;
+   mu_it_d0Error = 0;
+   mu_it_dszError = 0;
+   mu_it_dzError = 0;
+   mu_it_etaError = 0;
+   mu_it_chi2 = 0;
+   mu_it_ndof = 0;
+   mu_it_normalizedChi2 = 0;
+   mu_isGlobalMuon = 0;
+   mu_isStandAloneMuon = 0;
+   mu_isTrackerMuon = 0;
+   mu_isPFMuon = 0;
+   mu_isPFIsolationValid = 0;
+   mu_numberOfMatchedStations = 0;
+   mu_numberOfValidPixelHits = 0;
+   mu_tevOptimized_charge = 0;
+   mu_tevOptimized_pt = 0;
+   mu_tevOptimized_eta = 0;
+   mu_tevOptimized_phi = 0;
+   mu_tevOptimized_theta = 0;
+   mu_tevOptimized_px = 0;
+   mu_tevOptimized_py = 0;
+   mu_tevOptimized_pz = 0;
+   mu_tevOptimized_d0 = 0;
+   mu_tevOptimized_dz = 0;
+   mu_tevOptimized_dz_beamSpot = 0;
+   mu_tevOptimized_dz_firstPVtx = 0;
+   mu_tevOptimized_dxy = 0;
+   mu_tevOptimized_dxy_beamSpot = 0;
+   mu_tevOptimized_dxy_firstPVtx = 0;
+   mu_tevOptimized_ptError = 0;
+   mu_tevOptimized_etaError = 0;
+   mu_tevOptimized_phiError = 0;
+   mu_tevOptimized_thetaError = 0;
+   mu_tevOptimized_d0Error = 0;
+   mu_tevOptimized_dzError = 0;
+   mu_tevOptimized_dxyError = 0;
+   mu_isolationR03_sumPt = 0;
+   mu_isolationR03_trackerVetoPt = 0;
+   mu_isolationR03_emEt = 0;
+   mu_isolationR03_emVetoEt = 0;
+   mu_isolationR03_hadEt = 0;
+   mu_isolationR03_hadVetoEt = 0;
+   mu_isolationR05_sumPt = 0;
+   mu_isolationR05_trackerVetoPt = 0;
+   mu_isolationR05_emEt = 0;
+   mu_isolationR05_emVetoEt = 0;
+   mu_isolationR05_hadEt = 0;
+   mu_isolationR05_hadVetoEt = 0;
+   mu_pfIsolationR03_sumChargedHadronPt = 0;
+   mu_pfIsolationR03_sumChargedParticlePt = 0;
+   mu_pfIsolationR03_sumPhotonEt = 0;
+   mu_pfIsolationR03_sumNeutralHadronEtHighThreshold = 0;
+   mu_pfIsolationR03_sumPhotonEtHighThreshold = 0;
+   mu_pfIsolationR03_sumPUPt = 0;
+   mu_pfIsolationR04_sumChargedHadronPt = 0;
+   mu_pfIsolationR04_sumChargedParticlePt = 0;
+   mu_pfIsolationR04_sumPhotonEt = 0;
+   mu_pfIsolationR04_sumNeutralHadronEtHighThreshold = 0;
+   mu_pfIsolationR04_sumPhotonEtHighThreshold = 0;
+   mu_pfIsolationR04_sumPUPt = 0;
+   mu_pfMeanDRIsoProfileR03_sumChargedHadronPt = 0;
+   mu_pfMeanDRIsoProfileR03_sumChargedParticlePt = 0;
+   mu_pfMeanDRIsoProfileR03_sumPhotonEt = 0;
+   mu_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold = 0;
+   mu_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold = 0;
+   mu_pfMeanDRIsoProfileR03_sumPUPt = 0;
+   mu_pfMeanDRIsoProfileR04_sumChargedHadronPt = 0;
+   mu_pfMeanDRIsoProfileR04_sumChargedParticlePt = 0;
+   mu_pfMeanDRIsoProfileR04_sumPhotonEt = 0;
+   mu_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold = 0;
+   mu_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold = 0;
+   mu_pfMeanDRIsoProfileR04_sumPUPt = 0;
    HEEP_eseffsixix = 0;
    HEEP_eseffsiyiy = 0;
    HEEP_eseffsirir = 0;
@@ -1430,9 +1630,23 @@ void ZprimeLoop::Init()
    mc_mother_phi = 0;
    mc_mother_energy = 0;
    mc_mother_mass = 0;
+   gsf_triggerMatch_hltL1sL1SingleEG12 = 0;
+   gsf_triggerMatch_hltL1sL1Mu3p5EG12 = 0;
+   gsf_triggerMatch_hltL1sL1SingleEG22 = 0;
+   gsf_triggerMatch_hltEle33CaloIdLPixelMatchFilter = 0;
+   gsf_triggerMatch_hltDiEle33CaloIdLGsfTrkIdVLDPhiDoubleFilter = 0;
+   gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoFilter = 0;
+   gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoDoubleFilter = 0;
+   gsf_triggerMatch_hltEle32CaloIdTCaloIsoTTrkIdTTrkIsoTSC17TrackIsoFilter = 0;
+   gsf_triggerMatch_hltEle27WP80TrackIsoFilter = 0;
+   gsf_triggerMatch_hltMu22Photon22CaloIdLHEFilter = 0;
+   hltL1sMu16Eta2p1 = 0;
+   hltL1sL1Mu3p5EG12 = 0;
+   hltL1Mu3p5EG12L3Filtered22 = 0;
+   hltL3fL1sMu16Eta2p1L1f0L2f16QL3Filtered40Q = 0;
    // Set branch addresses and branch pointers
-   //if (!tree) return;
-   //fChain = tree;
+   if (!tree) return;
+   fChain = tree;
    fCurrent = -1;
    fChain->SetMakeClass(1);
 
@@ -1585,118 +1799,177 @@ void ZprimeLoop::Init()
    fChain->SetBranchAddress("gsf_e5x5", &gsf_e5x5, &b_gsf_e5x5);
    fChain->SetBranchAddress("gsf_r9", &gsf_r9, &b_gsf_r9);
    fChain->SetBranchAddress("gsf_hitsinfo", &gsf_hitsinfo, &b_gsf_hitsinfo);
-   fChain->SetBranchAddress("muon_n", &muon_n, &b_muon_n);
-   fChain->SetBranchAddress("muon_charge", &muon_charge, &b_muon_charge);
-   fChain->SetBranchAddress("muon_qoverp", &muon_qoverp, &b_muon_qoverp);
-   fChain->SetBranchAddress("muon_pt", &muon_pt, &b_muon_pt);
-   fChain->SetBranchAddress("muon_eta", &muon_eta, &b_muon_eta);
-   fChain->SetBranchAddress("muon_phi", &muon_phi, &b_muon_phi);
-   fChain->SetBranchAddress("muon_p", &muon_p, &b_muon_p);
-   fChain->SetBranchAddress("muon_px", &muon_px, &b_muon_px);
-   fChain->SetBranchAddress("muon_py", &muon_py, &b_muon_py);
-   fChain->SetBranchAddress("muon_pz", &muon_pz, &b_muon_pz);
-   fChain->SetBranchAddress("muon_theta", &muon_theta, &b_muon_theta);
-   fChain->SetBranchAddress("muon_lambda", &muon_lambda, &b_muon_lambda);
-   fChain->SetBranchAddress("muon_dxy", &muon_dxy, &b_muon_dxy);
-   fChain->SetBranchAddress("muon_d0", &muon_d0, &b_muon_d0);
-   fChain->SetBranchAddress("muon_dsz", &muon_dsz, &b_muon_dsz);
-   fChain->SetBranchAddress("muon_dz", &muon_dz, &b_muon_dz);
-   fChain->SetBranchAddress("muon_dxy_beamSpot", &muon_dxy_beamSpot, &b_muon_dxy_beamSpot);
-   fChain->SetBranchAddress("muon_dxy_firstPVtx", &muon_dxy_firstPVtx, &b_muon_dxy_firstPVtx);
-   fChain->SetBranchAddress("muon_dz_beamSpot", &muon_dz_beamSpot, &b_muon_dz_beamSpot);
-   fChain->SetBranchAddress("muon_dz_firstPVtx", &muon_dz_firstPVtx, &b_muon_dz_firstPVtx);
-   fChain->SetBranchAddress("muon_vx", &muon_vx, &b_muon_vx);
-   fChain->SetBranchAddress("muon_vy", &muon_vy, &b_muon_vy);
-   fChain->SetBranchAddress("muon_vz", &muon_vz, &b_muon_vz);
-   fChain->SetBranchAddress("muon_outerPt", &muon_outerPt, &b_muon_outerPt);
-   fChain->SetBranchAddress("muon_outerEta", &muon_outerEta, &b_muon_outerEta);
-   fChain->SetBranchAddress("muon_outerPhi", &muon_outerPhi, &b_muon_outerPhi);
-   fChain->SetBranchAddress("muon_outerTheta", &muon_outerTheta, &b_muon_outerTheta);
-   fChain->SetBranchAddress("muon_numberOfValidPixelHits", &muon_numberOfValidPixelHits, &b_muon_numberOfValidPixelHits);
-   fChain->SetBranchAddress("muon_numberOfValidTrackerHits", &muon_numberOfValidTrackerHits, &b_muon_numberOfValidTrackerHits);
-   fChain->SetBranchAddress("muon_numberOfValidMuonHits", &muon_numberOfValidMuonHits, &b_muon_numberOfValidMuonHits);
-   fChain->SetBranchAddress("muon_numberOfValidHits", &muon_numberOfValidHits, &b_muon_numberOfValidHits);
-   fChain->SetBranchAddress("muon_trackerLayersWithMeasurement", &muon_trackerLayersWithMeasurement, &b_muon_trackerLayersWithMeasurement);
-   fChain->SetBranchAddress("muon_numberOfLostHits", &muon_numberOfLostHits, &b_muon_numberOfLostHits);
-   fChain->SetBranchAddress("muon_numberOfMatchedStations", &muon_numberOfMatchedStations, &b_muon_numberOfMatchedStations);
-   fChain->SetBranchAddress("muon_validFraction", &muon_validFraction, &b_muon_validFraction);
-   fChain->SetBranchAddress("muon_isGlobalMuon", &muon_isGlobalMuon, &b_muon_isGlobalMuon);
-   fChain->SetBranchAddress("muon_isTrackerMuon", &muon_isTrackerMuon, &b_muon_isTrackerMuon);
-   fChain->SetBranchAddress("muon_isPFMuon", &muon_isPFMuon, &b_muon_isPFMuon);
-   fChain->SetBranchAddress("muon_isPFIsolationValid", &muon_isPFIsolationValid, &b_muon_isPFIsolationValid);
-   fChain->SetBranchAddress("muon_chi2", &muon_chi2, &b_muon_chi2);
-   fChain->SetBranchAddress("muon_ndof", &muon_ndof, &b_muon_ndof);
-   fChain->SetBranchAddress("muon_normalizedChi2", &muon_normalizedChi2, &b_muon_normalizedChi2);
-   fChain->SetBranchAddress("muon_qoverpError", &muon_qoverpError, &b_muon_qoverpError);
-   fChain->SetBranchAddress("muon_ptError", &muon_ptError, &b_muon_ptError);
-   fChain->SetBranchAddress("muon_thetaError", &muon_thetaError, &b_muon_thetaError);
-   fChain->SetBranchAddress("muon_lambdaError", &muon_lambdaError, &b_muon_lambdaError);
-   fChain->SetBranchAddress("muon_phiError", &muon_phiError, &b_muon_phiError);
-   fChain->SetBranchAddress("muon_dxyError", &muon_dxyError, &b_muon_dxyError);
-   fChain->SetBranchAddress("muon_d0Error", &muon_d0Error, &b_muon_d0Error);
-   fChain->SetBranchAddress("muon_dszError", &muon_dszError, &b_muon_dszError);
-   fChain->SetBranchAddress("muon_dzError", &muon_dzError, &b_muon_dzError);
-   fChain->SetBranchAddress("muon_isolationR03_sumPt", &muon_isolationR03_sumPt, &b_muon_isolationR03_sumPt);
-   fChain->SetBranchAddress("muon_isolationR03_trackerVetoPt", &muon_isolationR03_trackerVetoPt, &b_muon_isolationR03_trackerVetoPt);
-   fChain->SetBranchAddress("muon_isolationR03_emEt", &muon_isolationR03_emEt, &b_muon_isolationR03_emEt);
-   fChain->SetBranchAddress("muon_isolationR03_emVetoEt", &muon_isolationR03_emVetoEt, &b_muon_isolationR03_emVetoEt);
-   fChain->SetBranchAddress("muon_isolationR03_hadEt", &muon_isolationR03_hadEt, &b_muon_isolationR03_hadEt);
-   fChain->SetBranchAddress("muon_isolationR03_hadVetoEt", &muon_isolationR03_hadVetoEt, &b_muon_isolationR03_hadVetoEt);
-   fChain->SetBranchAddress("muon_isolationR05_sumPt", &muon_isolationR05_sumPt, &b_muon_isolationR05_sumPt);
-   fChain->SetBranchAddress("muon_isolationR05_trackerVetoPt", &muon_isolationR05_trackerVetoPt, &b_muon_isolationR05_trackerVetoPt);
-   fChain->SetBranchAddress("muon_isolationR05_emEt", &muon_isolationR05_emEt, &b_muon_isolationR05_emEt);
-   fChain->SetBranchAddress("muon_isolationR05_emVetoEt", &muon_isolationR05_emVetoEt, &b_muon_isolationR05_emVetoEt);
-   fChain->SetBranchAddress("muon_isolationR05_hadEt", &muon_isolationR05_hadEt, &b_muon_isolationR05_hadEt);
-   fChain->SetBranchAddress("muon_isolationR05_hadVetoEt", &muon_isolationR05_hadVetoEt, &b_muon_isolationR05_hadVetoEt);
-   fChain->SetBranchAddress("muon_pfIsolationR03_sumChargedHadronPt", &muon_pfIsolationR03_sumChargedHadronPt, &b_muon_pfIsolationR03_sumChargedHadronPt);
-   fChain->SetBranchAddress("muon_pfIsolationR03_sumChargedParticlePt", &muon_pfIsolationR03_sumChargedParticlePt, &b_muon_pfIsolationR03_sumChargedParticlePt);
-   fChain->SetBranchAddress("muon_pfIsolationR03_sumPhotonEt", &muon_pfIsolationR03_sumPhotonEt, &b_muon_pfIsolationR03_sumPhotonEt);
-   fChain->SetBranchAddress("muon_pfIsolationR03_sumNeutralHadronEtHighThreshold", &muon_pfIsolationR03_sumNeutralHadronEtHighThreshold, &b_muon_pfIsolationR03_sumNeutralHadronEtHighThreshold);
-   fChain->SetBranchAddress("muon_pfIsolationR03_sumPhotonEtHighThreshold", &muon_pfIsolationR03_sumPhotonEtHighThreshold, &b_muon_pfIsolationR03_sumPhotonEtHighThreshold);
-   fChain->SetBranchAddress("muon_pfIsolationR03_sumPUPt", &muon_pfIsolationR03_sumPUPt, &b_muon_pfIsolationR03_sumPUPt);
-   fChain->SetBranchAddress("muon_pfIsolationR04_sumChargedHadronPt", &muon_pfIsolationR04_sumChargedHadronPt, &b_muon_pfIsolationR04_sumChargedHadronPt);
-   fChain->SetBranchAddress("muon_pfIsolationR04_sumChargedParticlePt", &muon_pfIsolationR04_sumChargedParticlePt, &b_muon_pfIsolationR04_sumChargedParticlePt);
-   fChain->SetBranchAddress("muon_pfIsolationR04_sumPhotonEt", &muon_pfIsolationR04_sumPhotonEt, &b_muon_pfIsolationR04_sumPhotonEt);
-   fChain->SetBranchAddress("muon_pfIsolationR04_sumNeutralHadronEtHighThreshold", &muon_pfIsolationR04_sumNeutralHadronEtHighThreshold, &b_muon_pfIsolationR04_sumNeutralHadronEtHighThreshold);
-   fChain->SetBranchAddress("muon_pfIsolationR04_sumPhotonEtHighThreshold", &muon_pfIsolationR04_sumPhotonEtHighThreshold, &b_muon_pfIsolationR04_sumPhotonEtHighThreshold);
-   fChain->SetBranchAddress("muon_pfIsolationR04_sumPUPt", &muon_pfIsolationR04_sumPUPt, &b_muon_pfIsolationR04_sumPUPt);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR03_sumChargedHadronPt", &muon_pfMeanDRIsoProfileR03_sumChargedHadronPt, &b_muon_pfMeanDRIsoProfileR03_sumChargedHadronPt);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR03_sumChargedParticlePt", &muon_pfMeanDRIsoProfileR03_sumChargedParticlePt, &b_muon_pfMeanDRIsoProfileR03_sumChargedParticlePt);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR03_sumPhotonEt", &muon_pfMeanDRIsoProfileR03_sumPhotonEt, &b_muon_pfMeanDRIsoProfileR03_sumPhotonEt);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold", &muon_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold, &b_muon_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold", &muon_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold, &b_muon_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR03_sumPUPt", &muon_pfMeanDRIsoProfileR03_sumPUPt, &b_muon_pfMeanDRIsoProfileR03_sumPUPt);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR04_sumChargedHadronPt", &muon_pfMeanDRIsoProfileR04_sumChargedHadronPt, &b_muon_pfMeanDRIsoProfileR04_sumChargedHadronPt);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR04_sumChargedParticlePt", &muon_pfMeanDRIsoProfileR04_sumChargedParticlePt, &b_muon_pfMeanDRIsoProfileR04_sumChargedParticlePt);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR04_sumPhotonEt", &muon_pfMeanDRIsoProfileR04_sumPhotonEt, &b_muon_pfMeanDRIsoProfileR04_sumPhotonEt);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold", &muon_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold, &b_muon_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold", &muon_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold, &b_muon_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold);
-   fChain->SetBranchAddress("muon_pfMeanDRIsoProfileR04_sumPUPt", &muon_pfMeanDRIsoProfileR04_sumPUPt, &b_muon_pfMeanDRIsoProfileR04_sumPUPt);
-   fChain->SetBranchAddress("muon_innerPosition_x", &muon_innerPosition_x, &b_muon_innerPosition_x);
-   fChain->SetBranchAddress("muon_innerPosition_y", &muon_innerPosition_y, &b_muon_innerPosition_y);
-   fChain->SetBranchAddress("muon_innerPosition_z", &muon_innerPosition_z, &b_muon_innerPosition_z);
-   fChain->SetBranchAddress("muon_tevOptimized_charge", &muon_tevOptimized_charge, &b_muon_tevOptimized_charge);
-   fChain->SetBranchAddress("muon_tevOptimized_pt", &muon_tevOptimized_pt, &b_muon_tevOptimized_pt);
-   fChain->SetBranchAddress("muon_tevOptimized_eta", &muon_tevOptimized_eta, &b_muon_tevOptimized_eta);
-   fChain->SetBranchAddress("muon_tevOptimized_phi", &muon_tevOptimized_phi, &b_muon_tevOptimized_phi);
-   fChain->SetBranchAddress("muon_tevOptimized_theta", &muon_tevOptimized_theta, &b_muon_tevOptimized_theta);
-   fChain->SetBranchAddress("muon_tevOptimized_px", &muon_tevOptimized_px, &b_muon_tevOptimized_px);
-   fChain->SetBranchAddress("muon_tevOptimized_py", &muon_tevOptimized_py, &b_muon_tevOptimized_py);
-   fChain->SetBranchAddress("muon_tevOptimized_pz", &muon_tevOptimized_pz, &b_muon_tevOptimized_pz);
-   fChain->SetBranchAddress("muon_tevOptimized_d0", &muon_tevOptimized_d0, &b_muon_tevOptimized_d0);
-   fChain->SetBranchAddress("muon_tevOptimized_dz", &muon_tevOptimized_dz, &b_muon_tevOptimized_dz);
-   fChain->SetBranchAddress("muon_tevOptimized_dz_beamSpot", &muon_tevOptimized_dz_beamSpot, &b_muon_tevOptimized_dz_beamSpot);
-   fChain->SetBranchAddress("muon_tevOptimized_dz_firstPVtx", &muon_tevOptimized_dz_firstPVtx, &b_muon_tevOptimized_dz_firstPVtx);
-   fChain->SetBranchAddress("muon_tevOptimized_dxy", &muon_tevOptimized_dxy, &b_muon_tevOptimized_dxy);
-   fChain->SetBranchAddress("muon_tevOptimized_dxy_beamSpot", &muon_tevOptimized_dxy_beamSpot, &b_muon_tevOptimized_dxy_beamSpot);
-   fChain->SetBranchAddress("muon_tevOptimized_dxy_firstPVtx", &muon_tevOptimized_dxy_firstPVtx, &b_muon_tevOptimized_dxy_firstPVtx);
-   fChain->SetBranchAddress("muon_tevOptimized_ptError", &muon_tevOptimized_ptError, &b_muon_tevOptimized_ptError);
-   fChain->SetBranchAddress("muon_tevOptimized_etaError", &muon_tevOptimized_etaError, &b_muon_tevOptimized_etaError);
-   fChain->SetBranchAddress("muon_tevOptimized_phiError", &muon_tevOptimized_phiError, &b_muon_tevOptimized_phiError);
-   fChain->SetBranchAddress("muon_tevOptimized_thetaError", &muon_tevOptimized_thetaError, &b_muon_tevOptimized_thetaError);
-   fChain->SetBranchAddress("muon_tevOptimized_d0Error", &muon_tevOptimized_d0Error, &b_muon_tevOptimized_d0Error);
-   fChain->SetBranchAddress("muon_tevOptimized_dzError", &muon_tevOptimized_dzError, &b_muon_tevOptimized_dzError);
-   fChain->SetBranchAddress("muon_tevOptimized_dxyError", &muon_tevOptimized_dxyError, &b_muon_tevOptimized_dxyError);
+   fChain->SetBranchAddress("mu_n", &mu_n, &b_mu_n);
+   fChain->SetBranchAddress("mu_gt_qoverp", &mu_gt_qoverp, &b_mu_gt_qoverp);
+   fChain->SetBranchAddress("mu_gt_charge", &mu_gt_charge, &b_mu_gt_charge);
+   fChain->SetBranchAddress("mu_gt_pt", &mu_gt_pt, &b_mu_gt_pt);
+   fChain->SetBranchAddress("mu_gt_eta", &mu_gt_eta, &b_mu_gt_eta);
+   fChain->SetBranchAddress("mu_gt_phi", &mu_gt_phi, &b_mu_gt_phi);
+   fChain->SetBranchAddress("mu_gt_p", &mu_gt_p, &b_mu_gt_p);
+   fChain->SetBranchAddress("mu_gt_px", &mu_gt_px, &b_mu_gt_px);
+   fChain->SetBranchAddress("mu_gt_py", &mu_gt_py, &b_mu_gt_py);
+   fChain->SetBranchAddress("mu_gt_pz", &mu_gt_pz, &b_mu_gt_pz);
+   fChain->SetBranchAddress("mu_gt_theta", &mu_gt_theta, &b_mu_gt_theta);
+   fChain->SetBranchAddress("mu_gt_lambda", &mu_gt_lambda, &b_mu_gt_lambda);
+   fChain->SetBranchAddress("mu_gt_d0", &mu_gt_d0, &b_mu_gt_d0);
+   fChain->SetBranchAddress("mu_gt_dz", &mu_gt_dz, &b_mu_gt_dz);
+   fChain->SetBranchAddress("mu_gt_dz_beamspot", &mu_gt_dz_beamspot, &b_mu_gt_dz_beamspot);
+   fChain->SetBranchAddress("mu_gt_dz_firstPVtx", &mu_gt_dz_firstPVtx, &b_mu_gt_dz_firstPVtx);
+   fChain->SetBranchAddress("mu_gt_dxy", &mu_gt_dxy, &b_mu_gt_dxy);
+   fChain->SetBranchAddress("mu_gt_dxy_beamspot", &mu_gt_dxy_beamspot, &b_mu_gt_dxy_beamspot);
+   fChain->SetBranchAddress("mu_gt_dxy_firstPVtx", &mu_gt_dxy_firstPVtx, &b_mu_gt_dxy_firstPVtx);
+   fChain->SetBranchAddress("mu_gt_dsz", &mu_gt_dsz, &b_mu_gt_dsz);
+   fChain->SetBranchAddress("mu_gt_vx", &mu_gt_vx, &b_mu_gt_vx);
+   fChain->SetBranchAddress("mu_gt_vy", &mu_gt_vy, &b_mu_gt_vy);
+   fChain->SetBranchAddress("mu_gt_vz", &mu_gt_vz, &b_mu_gt_vz);
+   fChain->SetBranchAddress("mu_gt_qoverpError", &mu_gt_qoverpError, &b_mu_gt_qoverpError);
+   fChain->SetBranchAddress("mu_gt_ptError", &mu_gt_ptError, &b_mu_gt_ptError);
+   fChain->SetBranchAddress("mu_gt_thetaError", &mu_gt_thetaError, &b_mu_gt_thetaError);
+   fChain->SetBranchAddress("mu_gt_lambdaError", &mu_gt_lambdaError, &b_mu_gt_lambdaError);
+   fChain->SetBranchAddress("mu_gt_phiError", &mu_gt_phiError, &b_mu_gt_phiError);
+   fChain->SetBranchAddress("mu_gt_dxyError", &mu_gt_dxyError, &b_mu_gt_dxyError);
+   fChain->SetBranchAddress("mu_gt_d0Error", &mu_gt_d0Error, &b_mu_gt_d0Error);
+   fChain->SetBranchAddress("mu_gt_dszError", &mu_gt_dszError, &b_mu_gt_dszError);
+   fChain->SetBranchAddress("mu_gt_dzError", &mu_gt_dzError, &b_mu_gt_dzError);
+   fChain->SetBranchAddress("mu_gt_etaError", &mu_gt_etaError, &b_mu_gt_etaError);
+   fChain->SetBranchAddress("mu_gt_chi2", &mu_gt_chi2, &b_mu_gt_chi2);
+   fChain->SetBranchAddress("mu_gt_ndof", &mu_gt_ndof, &b_mu_gt_ndof);
+   fChain->SetBranchAddress("mu_gt_normalizedChi2", &mu_gt_normalizedChi2, &b_mu_gt_normalizedChi2);
+   fChain->SetBranchAddress("mu_ot_qoverp", &mu_ot_qoverp, &b_mu_ot_qoverp);
+   fChain->SetBranchAddress("mu_ot_charge", &mu_ot_charge, &b_mu_ot_charge);
+   fChain->SetBranchAddress("mu_ot_pt", &mu_ot_pt, &b_mu_ot_pt);
+   fChain->SetBranchAddress("mu_ot_eta", &mu_ot_eta, &b_mu_ot_eta);
+   fChain->SetBranchAddress("mu_ot_phi", &mu_ot_phi, &b_mu_ot_phi);
+   fChain->SetBranchAddress("mu_ot_p", &mu_ot_p, &b_mu_ot_p);
+   fChain->SetBranchAddress("mu_ot_px", &mu_ot_px, &b_mu_ot_px);
+   fChain->SetBranchAddress("mu_ot_py", &mu_ot_py, &b_mu_ot_py);
+   fChain->SetBranchAddress("mu_ot_pz", &mu_ot_pz, &b_mu_ot_pz);
+   fChain->SetBranchAddress("mu_ot_theta", &mu_ot_theta, &b_mu_ot_theta);
+   fChain->SetBranchAddress("mu_ot_lambda", &mu_ot_lambda, &b_mu_ot_lambda);
+   fChain->SetBranchAddress("mu_ot_d0", &mu_ot_d0, &b_mu_ot_d0);
+   fChain->SetBranchAddress("mu_ot_dz", &mu_ot_dz, &b_mu_ot_dz);
+   fChain->SetBranchAddress("mu_ot_dz_beamspot", &mu_ot_dz_beamspot, &b_mu_ot_dz_beamspot);
+   fChain->SetBranchAddress("mu_ot_dz_firstPVtx", &mu_ot_dz_firstPVtx, &b_mu_ot_dz_firstPVtx);
+   fChain->SetBranchAddress("mu_ot_dxy", &mu_ot_dxy, &b_mu_ot_dxy);
+   fChain->SetBranchAddress("mu_ot_dxy_beamspot", &mu_ot_dxy_beamspot, &b_mu_ot_dxy_beamspot);
+   fChain->SetBranchAddress("mu_ot_dxy_firstPVtx", &mu_ot_dxy_firstPVtx, &b_mu_ot_dxy_firstPVtx);
+   fChain->SetBranchAddress("mu_ot_dsz", &mu_ot_dsz, &b_mu_ot_dsz);
+   fChain->SetBranchAddress("mu_ot_vx", &mu_ot_vx, &b_mu_ot_vx);
+   fChain->SetBranchAddress("mu_ot_vy", &mu_ot_vy, &b_mu_ot_vy);
+   fChain->SetBranchAddress("mu_ot_vz", &mu_ot_vz, &b_mu_ot_vz);
+   fChain->SetBranchAddress("mu_ot_qoverpError", &mu_ot_qoverpError, &b_mu_ot_qoverpError);
+   fChain->SetBranchAddress("mu_ot_ptError", &mu_ot_ptError, &b_mu_ot_ptError);
+   fChain->SetBranchAddress("mu_ot_thetaError", &mu_ot_thetaError, &b_mu_ot_thetaError);
+   fChain->SetBranchAddress("mu_ot_lambdaError", &mu_ot_lambdaError, &b_mu_ot_lambdaError);
+   fChain->SetBranchAddress("mu_ot_phiError", &mu_ot_phiError, &b_mu_ot_phiError);
+   fChain->SetBranchAddress("mu_ot_dxyError", &mu_ot_dxyError, &b_mu_ot_dxyError);
+   fChain->SetBranchAddress("mu_ot_d0Error", &mu_ot_d0Error, &b_mu_ot_d0Error);
+   fChain->SetBranchAddress("mu_ot_dszError", &mu_ot_dszError, &b_mu_ot_dszError);
+   fChain->SetBranchAddress("mu_ot_dzError", &mu_ot_dzError, &b_mu_ot_dzError);
+   fChain->SetBranchAddress("mu_ot_etaError", &mu_ot_etaError, &b_mu_ot_etaError);
+   fChain->SetBranchAddress("mu_ot_chi2", &mu_ot_chi2, &b_mu_ot_chi2);
+   fChain->SetBranchAddress("mu_ot_ndof", &mu_ot_ndof, &b_mu_ot_ndof);
+   fChain->SetBranchAddress("mu_ot_normalizedChi2", &mu_ot_normalizedChi2, &b_mu_ot_normalizedChi2);
+   fChain->SetBranchAddress("mu_it_qoverp", &mu_it_qoverp, &b_mu_it_qoverp);
+   fChain->SetBranchAddress("mu_it_charge", &mu_it_charge, &b_mu_it_charge);
+   fChain->SetBranchAddress("mu_it_pt", &mu_it_pt, &b_mu_it_pt);
+   fChain->SetBranchAddress("mu_it_eta", &mu_it_eta, &b_mu_it_eta);
+   fChain->SetBranchAddress("mu_it_phi", &mu_it_phi, &b_mu_it_phi);
+   fChain->SetBranchAddress("mu_it_p", &mu_it_p, &b_mu_it_p);
+   fChain->SetBranchAddress("mu_it_px", &mu_it_px, &b_mu_it_px);
+   fChain->SetBranchAddress("mu_it_py", &mu_it_py, &b_mu_it_py);
+   fChain->SetBranchAddress("mu_it_pz", &mu_it_pz, &b_mu_it_pz);
+   fChain->SetBranchAddress("mu_it_theta", &mu_it_theta, &b_mu_it_theta);
+   fChain->SetBranchAddress("mu_it_lambda", &mu_it_lambda, &b_mu_it_lambda);
+   fChain->SetBranchAddress("mu_it_d0", &mu_it_d0, &b_mu_it_d0);
+   fChain->SetBranchAddress("mu_it_dz", &mu_it_dz, &b_mu_it_dz);
+   fChain->SetBranchAddress("mu_it_dz_beamspot", &mu_it_dz_beamspot, &b_mu_it_dz_beamspot);
+   fChain->SetBranchAddress("mu_it_dz_firstPVtx", &mu_it_dz_firstPVtx, &b_mu_it_dz_firstPVtx);
+   fChain->SetBranchAddress("mu_it_dxy", &mu_it_dxy, &b_mu_it_dxy);
+   fChain->SetBranchAddress("mu_it_dxy_beamspot", &mu_it_dxy_beamspot, &b_mu_it_dxy_beamspot);
+   fChain->SetBranchAddress("mu_it_dxy_firstPVtx", &mu_it_dxy_firstPVtx, &b_mu_it_dxy_firstPVtx);
+   fChain->SetBranchAddress("mu_it_dsz", &mu_it_dsz, &b_mu_it_dsz);
+   fChain->SetBranchAddress("mu_it_vx", &mu_it_vx, &b_mu_it_vx);
+   fChain->SetBranchAddress("mu_it_vy", &mu_it_vy, &b_mu_it_vy);
+   fChain->SetBranchAddress("mu_it_vz", &mu_it_vz, &b_mu_it_vz);
+   fChain->SetBranchAddress("mu_it_qoverpError", &mu_it_qoverpError, &b_mu_it_qoverpError);
+   fChain->SetBranchAddress("mu_it_ptError", &mu_it_ptError, &b_mu_it_ptError);
+   fChain->SetBranchAddress("mu_it_thetaError", &mu_it_thetaError, &b_mu_it_thetaError);
+   fChain->SetBranchAddress("mu_it_lambdaError", &mu_it_lambdaError, &b_mu_it_lambdaError);
+   fChain->SetBranchAddress("mu_it_phiError", &mu_it_phiError, &b_mu_it_phiError);
+   fChain->SetBranchAddress("mu_it_dxyError", &mu_it_dxyError, &b_mu_it_dxyError);
+   fChain->SetBranchAddress("mu_it_d0Error", &mu_it_d0Error, &b_mu_it_d0Error);
+   fChain->SetBranchAddress("mu_it_dszError", &mu_it_dszError, &b_mu_it_dszError);
+   fChain->SetBranchAddress("mu_it_dzError", &mu_it_dzError, &b_mu_it_dzError);
+   fChain->SetBranchAddress("mu_it_etaError", &mu_it_etaError, &b_mu_it_etaError);
+   fChain->SetBranchAddress("mu_it_chi2", &mu_it_chi2, &b_mu_it_chi2);
+   fChain->SetBranchAddress("mu_it_ndof", &mu_it_ndof, &b_mu_it_ndof);
+   fChain->SetBranchAddress("mu_it_normalizedChi2", &mu_it_normalizedChi2, &b_mu_it_normalizedChi2);
+   fChain->SetBranchAddress("mu_isGlobalMuon", &mu_isGlobalMuon, &b_mu_isGlobalMuon);
+   fChain->SetBranchAddress("mu_isStandAloneMuon", &mu_isStandAloneMuon, &b_mu_isStandAloneMuon);
+   fChain->SetBranchAddress("mu_isTrackerMuon", &mu_isTrackerMuon, &b_mu_isTrackerMuon);
+   fChain->SetBranchAddress("mu_isPFMuon", &mu_isPFMuon, &b_mu_isPFMuon);
+   fChain->SetBranchAddress("mu_isPFIsolationValid", &mu_isPFIsolationValid, &b_mu_isPFIsolationValid);
+   fChain->SetBranchAddress("mu_numberOfMatchedStations", &mu_numberOfMatchedStations, &b_mu_numberOfMatchedStations);
+   fChain->SetBranchAddress("mu_numberOfValidPixelHits", &mu_numberOfValidPixelHits, &b_mu_numberOfValidPixelHits);
+   fChain->SetBranchAddress("mu_tevOptimized_charge", &mu_tevOptimized_charge, &b_mu_tevOptimized_charge);
+   fChain->SetBranchAddress("mu_tevOptimized_pt", &mu_tevOptimized_pt, &b_mu_tevOptimized_pt);
+   fChain->SetBranchAddress("mu_tevOptimized_eta", &mu_tevOptimized_eta, &b_mu_tevOptimized_eta);
+   fChain->SetBranchAddress("mu_tevOptimized_phi", &mu_tevOptimized_phi, &b_mu_tevOptimized_phi);
+   fChain->SetBranchAddress("mu_tevOptimized_theta", &mu_tevOptimized_theta, &b_mu_tevOptimized_theta);
+   fChain->SetBranchAddress("mu_tevOptimized_px", &mu_tevOptimized_px, &b_mu_tevOptimized_px);
+   fChain->SetBranchAddress("mu_tevOptimized_py", &mu_tevOptimized_py, &b_mu_tevOptimized_py);
+   fChain->SetBranchAddress("mu_tevOptimized_pz", &mu_tevOptimized_pz, &b_mu_tevOptimized_pz);
+   fChain->SetBranchAddress("mu_tevOptimized_d0", &mu_tevOptimized_d0, &b_mu_tevOptimized_d0);
+   fChain->SetBranchAddress("mu_tevOptimized_dz", &mu_tevOptimized_dz, &b_mu_tevOptimized_dz);
+   fChain->SetBranchAddress("mu_tevOptimized_dz_beamSpot", &mu_tevOptimized_dz_beamSpot, &b_mu_tevOptimized_dz_beamSpot);
+   fChain->SetBranchAddress("mu_tevOptimized_dz_firstPVtx", &mu_tevOptimized_dz_firstPVtx, &b_mu_tevOptimized_dz_firstPVtx);
+   fChain->SetBranchAddress("mu_tevOptimized_dxy", &mu_tevOptimized_dxy, &b_mu_tevOptimized_dxy);
+   fChain->SetBranchAddress("mu_tevOptimized_dxy_beamSpot", &mu_tevOptimized_dxy_beamSpot, &b_mu_tevOptimized_dxy_beamSpot);
+   fChain->SetBranchAddress("mu_tevOptimized_dxy_firstPVtx", &mu_tevOptimized_dxy_firstPVtx, &b_mu_tevOptimized_dxy_firstPVtx);
+   fChain->SetBranchAddress("mu_tevOptimized_ptError", &mu_tevOptimized_ptError, &b_mu_tevOptimized_ptError);
+   fChain->SetBranchAddress("mu_tevOptimized_etaError", &mu_tevOptimized_etaError, &b_mu_tevOptimized_etaError);
+   fChain->SetBranchAddress("mu_tevOptimized_phiError", &mu_tevOptimized_phiError, &b_mu_tevOptimized_phiError);
+   fChain->SetBranchAddress("mu_tevOptimized_thetaError", &mu_tevOptimized_thetaError, &b_mu_tevOptimized_thetaError);
+   fChain->SetBranchAddress("mu_tevOptimized_d0Error", &mu_tevOptimized_d0Error, &b_mu_tevOptimized_d0Error);
+   fChain->SetBranchAddress("mu_tevOptimized_dzError", &mu_tevOptimized_dzError, &b_mu_tevOptimized_dzError);
+   fChain->SetBranchAddress("mu_tevOptimized_dxyError", &mu_tevOptimized_dxyError, &b_mu_tevOptimized_dxyError);
+   fChain->SetBranchAddress("mu_isolationR03_sumPt", &mu_isolationR03_sumPt, &b_mu_isolationR03_sumPt);
+   fChain->SetBranchAddress("mu_isolationR03_trackerVetoPt", &mu_isolationR03_trackerVetoPt, &b_mu_isolationR03_trackerVetoPt);
+   fChain->SetBranchAddress("mu_isolationR03_emEt", &mu_isolationR03_emEt, &b_mu_isolationR03_emEt);
+   fChain->SetBranchAddress("mu_isolationR03_emVetoEt", &mu_isolationR03_emVetoEt, &b_mu_isolationR03_emVetoEt);
+   fChain->SetBranchAddress("mu_isolationR03_hadEt", &mu_isolationR03_hadEt, &b_mu_isolationR03_hadEt);
+   fChain->SetBranchAddress("mu_isolationR03_hadVetoEt", &mu_isolationR03_hadVetoEt, &b_mu_isolationR03_hadVetoEt);
+   fChain->SetBranchAddress("mu_isolationR05_sumPt", &mu_isolationR05_sumPt, &b_mu_isolationR05_sumPt);
+   fChain->SetBranchAddress("mu_isolationR05_trackerVetoPt", &mu_isolationR05_trackerVetoPt, &b_mu_isolationR05_trackerVetoPt);
+   fChain->SetBranchAddress("mu_isolationR05_emEt", &mu_isolationR05_emEt, &b_mu_isolationR05_emEt);
+   fChain->SetBranchAddress("mu_isolationR05_emVetoEt", &mu_isolationR05_emVetoEt, &b_mu_isolationR05_emVetoEt);
+   fChain->SetBranchAddress("mu_isolationR05_hadEt", &mu_isolationR05_hadEt, &b_mu_isolationR05_hadEt);
+   fChain->SetBranchAddress("mu_isolationR05_hadVetoEt", &mu_isolationR05_hadVetoEt, &b_mu_isolationR05_hadVetoEt);
+   fChain->SetBranchAddress("mu_pfIsolationR03_sumChargedHadronPt", &mu_pfIsolationR03_sumChargedHadronPt, &b_mu_pfIsolationR03_sumChargedHadronPt);
+   fChain->SetBranchAddress("mu_pfIsolationR03_sumChargedParticlePt", &mu_pfIsolationR03_sumChargedParticlePt, &b_mu_pfIsolationR03_sumChargedParticlePt);
+   fChain->SetBranchAddress("mu_pfIsolationR03_sumPhotonEt", &mu_pfIsolationR03_sumPhotonEt, &b_mu_pfIsolationR03_sumPhotonEt);
+   fChain->SetBranchAddress("mu_pfIsolationR03_sumNeutralHadronEtHighThreshold", &mu_pfIsolationR03_sumNeutralHadronEtHighThreshold, &b_mu_pfIsolationR03_sumNeutralHadronEtHighThreshold);
+   fChain->SetBranchAddress("mu_pfIsolationR03_sumPhotonEtHighThreshold", &mu_pfIsolationR03_sumPhotonEtHighThreshold, &b_mu_pfIsolationR03_sumPhotonEtHighThreshold);
+   fChain->SetBranchAddress("mu_pfIsolationR03_sumPUPt", &mu_pfIsolationR03_sumPUPt, &b_mu_pfIsolationR03_sumPUPt);
+   fChain->SetBranchAddress("mu_pfIsolationR04_sumChargedHadronPt", &mu_pfIsolationR04_sumChargedHadronPt, &b_mu_pfIsolationR04_sumChargedHadronPt);
+   fChain->SetBranchAddress("mu_pfIsolationR04_sumChargedParticlePt", &mu_pfIsolationR04_sumChargedParticlePt, &b_mu_pfIsolationR04_sumChargedParticlePt);
+   fChain->SetBranchAddress("mu_pfIsolationR04_sumPhotonEt", &mu_pfIsolationR04_sumPhotonEt, &b_mu_pfIsolationR04_sumPhotonEt);
+   fChain->SetBranchAddress("mu_pfIsolationR04_sumNeutralHadronEtHighThreshold", &mu_pfIsolationR04_sumNeutralHadronEtHighThreshold, &b_mu_pfIsolationR04_sumNeutralHadronEtHighThreshold);
+   fChain->SetBranchAddress("mu_pfIsolationR04_sumPhotonEtHighThreshold", &mu_pfIsolationR04_sumPhotonEtHighThreshold, &b_mu_pfIsolationR04_sumPhotonEtHighThreshold);
+   fChain->SetBranchAddress("mu_pfIsolationR04_sumPUPt", &mu_pfIsolationR04_sumPUPt, &b_mu_pfIsolationR04_sumPUPt);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR03_sumChargedHadronPt", &mu_pfMeanDRIsoProfileR03_sumChargedHadronPt, &b_mu_pfMeanDRIsoProfileR03_sumChargedHadronPt);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR03_sumChargedParticlePt", &mu_pfMeanDRIsoProfileR03_sumChargedParticlePt, &b_mu_pfMeanDRIsoProfileR03_sumChargedParticlePt);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR03_sumPhotonEt", &mu_pfMeanDRIsoProfileR03_sumPhotonEt, &b_mu_pfMeanDRIsoProfileR03_sumPhotonEt);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold", &mu_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold, &b_mu_pfMeanDRIsoProfileR03_sumNeutralHadronEtHighThreshold);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold", &mu_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold, &b_mu_pfMeanDRIsoProfileR03_sumPhotonEtHighThreshold);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR03_sumPUPt", &mu_pfMeanDRIsoProfileR03_sumPUPt, &b_mu_pfMeanDRIsoProfileR03_sumPUPt);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR04_sumChargedHadronPt", &mu_pfMeanDRIsoProfileR04_sumChargedHadronPt, &b_mu_pfMeanDRIsoProfileR04_sumChargedHadronPt);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR04_sumChargedParticlePt", &mu_pfMeanDRIsoProfileR04_sumChargedParticlePt, &b_mu_pfMeanDRIsoProfileR04_sumChargedParticlePt);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR04_sumPhotonEt", &mu_pfMeanDRIsoProfileR04_sumPhotonEt, &b_mu_pfMeanDRIsoProfileR04_sumPhotonEt);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold", &mu_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold, &b_mu_pfMeanDRIsoProfileR04_sumNeutralHadronEtHighThreshold);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold", &mu_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold, &b_mu_pfMeanDRIsoProfileR04_sumPhotonEtHighThreshold);
+   fChain->SetBranchAddress("mu_pfMeanDRIsoProfileR04_sumPUPt", &mu_pfMeanDRIsoProfileR04_sumPUPt, &b_mu_pfMeanDRIsoProfileR04_sumPUPt);
    fChain->SetBranchAddress("MET_met_et", &MET_met_et, &b_MET_met_et);
    fChain->SetBranchAddress("MET_met_phi", &MET_met_phi, &b_MET_met_phi);
    fChain->SetBranchAddress("MET_pfMet_et", &MET_pfMet_et, &b_MET_pfMet_et);
@@ -1913,8 +2186,21 @@ void ZprimeLoop::Init()
    fChain->SetBranchAddress("mc_mother_phi", &mc_mother_phi, &b_mc_mother_phi);
    fChain->SetBranchAddress("mc_mother_energy", &mc_mother_energy, &b_mc_mother_energy);
    fChain->SetBranchAddress("mc_mother_mass", &mc_mother_mass, &b_mc_mother_mass);
+   fChain->SetBranchAddress("gsf_triggerMatch_hltL1sL1SingleEG12", &gsf_triggerMatch_hltL1sL1SingleEG12, &b_gsf_triggerMatch_hltL1sL1SingleEG12);
+   fChain->SetBranchAddress("gsf_triggerMatch_hltL1sL1Mu3p5EG12", &gsf_triggerMatch_hltL1sL1Mu3p5EG12, &b_gsf_triggerMatch_hltL1sL1Mu3p5EG12);
+   fChain->SetBranchAddress("gsf_triggerMatch_hltL1sL1SingleEG22", &gsf_triggerMatch_hltL1sL1SingleEG22, &b_gsf_triggerMatch_hltL1sL1SingleEG22);
+   fChain->SetBranchAddress("gsf_triggerMatch_hltEle33CaloIdLPixelMatchFilter", &gsf_triggerMatch_hltEle33CaloIdLPixelMatchFilter, &b_gsf_triggerMatch_hltEle33CaloIdLPixelMatchFilter);
+   fChain->SetBranchAddress("gsf_triggerMatch_hltDiEle33CaloIdLGsfTrkIdVLDPhiDoubleFilter", &gsf_triggerMatch_hltDiEle33CaloIdLGsfTrkIdVLDPhiDoubleFilter, &b_gsf_triggerMatch_hltDiEle33CaloIdLGsfTrkIdVLDPhiDoubleFilter);
+   fChain->SetBranchAddress("gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoFilter", &gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoFilter, &b_gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoFilter);
+   fChain->SetBranchAddress("gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoDoubleFilter", &gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoDoubleFilter, &b_gsf_triggerMatch_hltEle17TightIdLooseIsoEle8TightIdLooseIsoTrackIsoDoubleFilter);
+   fChain->SetBranchAddress("gsf_triggerMatch_hltEle32CaloIdTCaloIsoTTrkIdTTrkIsoTSC17TrackIsoFilter", &gsf_triggerMatch_hltEle32CaloIdTCaloIsoTTrkIdTTrkIsoTSC17TrackIsoFilter, &b_gsf_triggerMatch_hltEle32CaloIdTCaloIsoTTrkIdTTrkIsoTSC17TrackIsoFilter);
+   fChain->SetBranchAddress("gsf_triggerMatch_hltEle27WP80TrackIsoFilter", &gsf_triggerMatch_hltEle27WP80TrackIsoFilter, &b_gsf_triggerMatch_hltEle27WP80TrackIsoFilter);
+   fChain->SetBranchAddress("gsf_triggerMatch_hltMu22Photon22CaloIdLHEFilter", &gsf_triggerMatch_hltMu22Photon22CaloIdLHEFilter, &b_gsf_triggerMatch_hltMu22Photon22CaloIdLHEFilter);
+   fChain->SetBranchAddress("hltL1sMu16Eta2p1", &hltL1sMu16Eta2p1, &b_hltL1sMu16Eta2p1);
+   fChain->SetBranchAddress("hltL1sL1Mu3p5EG12", &hltL1sL1Mu3p5EG12, &b_hltL1sL1Mu3p5EG12);
+   fChain->SetBranchAddress("hltL1Mu3p5EG12L3Filtered22", &hltL1Mu3p5EG12L3Filtered22, &b_hltL1Mu3p5EG12L3Filtered22);
+   fChain->SetBranchAddress("hltL3fL1sMu16Eta2p1L1f0L2f16QL3Filtered40Q", &hltL3fL1sMu16Eta2p1L1f0L2f16QL3Filtered40Q, &b_hltL3fL1sMu16Eta2p1L1f0L2f16QL3Filtered40Q);
    Notify();
-
 }
 
 Bool_t ZprimeLoop::Notify()
