@@ -5,6 +5,8 @@
 #include "TFile.h"
 #include "TLorentzVector.h"
 #include "TH1I.h"
+#include "TH1F.h"
+#include "TH2F.h"
 // STL
 #include <vector>
 #include <iostream>
@@ -31,19 +33,21 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
 
   MCDimuonReco mcdimuonreco(T);
   MCParticleFinder mcpfinder(T);
-  mcpfinder.setNSig_Pt(10.); // require 10 sigma for matching in pt
+  mcpfinder.setNSig_Pt(10.); // require 1000 sigma for matching in pt
   mcpfinder.setNSig_Phi(10.); // require 10 sigma for matching in phi 
   mcpfinder.setNSig_Eta(10.); // require 10 sigma for matching in eta
 
   int nevents = T.GetEntries();
 
+  //TH2F* hMuonPtResolution     = new TH2F("hMuonPtResolution","Pt resolution of muons",1000,0,10000,1000,0,3);
+  TH2F* hMuonPtResolution     = new TH2F("hMuonPtResolution","Pt resolution of muons",1000,0,10000,1000,-3,3);
   TH1F* hMCMuonPhi            = new TH1F("hMCMuonPhi","Phi of MC Muons",100,-5,5);
   TH1F* hMCMuonEta            = new TH1F("hMCMuonEta","Eta of MC Muons",200,-10,10);
   TH1I* hMatchedMC            = new TH1I("hMatchedMC","# of Matched MC particles",2,0,2);
   TH1I* hNMatchedPerEvent     = new TH1I("hNMatchedPerEvent","# of Matched MC particles per Event",5,0,5);
   TH1I* hNHighPtMuonsPerEvent = new TH1I("hNHighPtMuonsPerEvent","# of High Pt Muons per Event",5,0,5);
-  TH1F* hDimuonMass           = new TH1F("hDimuonMass","Invariant Mass",1000,0,5000);
-  TH1F* hMatchedMCDimuonMass  = new TH1F("hMatchedMCDimuonMass","Invariant Mass (MC matched Reco)",1000,0,5000);
+  TH1F* hDimuonMass           = new TH1F("hDimuonMass","Invariant Mass",1000,0,10000);
+  TH1F* hMatchedMCDimuonMass  = new TH1F("hMatchedMCDimuonMass","Invariant Mass (MC matched Reco)",1000,0,10000);
   TH1F* hDimuonDeltaMass      = new TH1F("hDimuonDeltaMass","Delta Mass (Reco-MC)",1000,-1000,1000);
   TH1F* hDimuonDeltaMassNorm  = new TH1F("hDimuonDeltaMassNorm","Delta Mass (Reco-MC)/MC",1000,-0.5,0.5);
   TH1F* hMCDimuonMass         = new TH1F("hMCDimuonMass","Invariant Mass (MC)",1000,0,10000);
@@ -87,10 +91,14 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
       int mcId = mcpfinder.getMatchedMCId(ip); 
       // mcId < 0 --> no matched MC particle.
       if (mcId > 0) {
-	hMatchedMC->Fill(1);
-	nMatched++;
-        hMatchedMuonPhi->Fill(phi);
-        hMatchedMuonEta->Fill(eta);
+        if ( T.mc_pt->at(mcId) > highPtThreshold ) {
+	  hMatchedMC->Fill(1);
+	  nMatched++;
+          hMatchedMuonPhi->Fill(phi);
+          hMatchedMuonEta->Fill(eta);
+          //hMuonPtResolution->Fill(pt,TMath::Abs((pt-T.mc_pt->at(mcId))/T.mc_pt->at(mcId)));
+          hMuonPtResolution->Fill(pt,(pt-T.mc_pt->at(mcId))/T.mc_pt->at(mcId));
+	}
       } else {
         hMatchedMC->Fill(0);
 	//cerr << "This is rejected : " << T.mu_tevOptimized_pt->at(ip) << " retval=" << mcId << endl;
@@ -183,6 +191,7 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
   hPurityEta->SetTitle("tevOptimized Muon Detection Purity in Eta");
 
   // Write histgrams
+  hMuonPtResolution->Write();
   hMatchedMC->Write();
   hNMatchedPerEvent->Write();
   hNHighPtMuonsPerEvent->Write();
