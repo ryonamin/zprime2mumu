@@ -8,6 +8,7 @@ else
     export CPATH=${BASEDIR}/include
     export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
     export DYLD_LIBRARY_PATH=${LD_LIBRARY_PATH}
+    echo "The environment has been set."
   else
     echo "The environment is already set."
   fi
