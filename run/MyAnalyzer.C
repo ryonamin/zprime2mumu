@@ -31,7 +31,9 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
 
   MCDimuonReco mcdimuonreco(T);
   MCParticleFinder mcpfinder(T);
-  mcpfinder.setNSig(10.); // require 5 sigma for matching in pt, phi, eta
+  mcpfinder.setNSig_Pt(10.); // require 10 sigma for matching in pt
+  mcpfinder.setNSig_Phi(10.); // require 10 sigma for matching in phi 
+  mcpfinder.setNSig_Eta(10.); // require 10 sigma for matching in eta
 
   int nevents = T.GetEntries();
 
@@ -44,7 +46,7 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
   TH1F* hMatchedMCDimuonMass  = new TH1F("hMatchedMCDimuonMass","Invariant Mass (MC matched Reco)",1000,0,5000);
   TH1F* hDimuonDeltaMass      = new TH1F("hDimuonDeltaMass","Delta Mass (Reco-MC)",1000,-1000,1000);
   TH1F* hDimuonDeltaMassNorm  = new TH1F("hDimuonDeltaMassNorm","Delta Mass (Reco-MC)/MC",1000,-0.5,0.5);
-  TH1F* hMCDimuonMass         = new TH1F("hMCDimuonMass","Invariant Mass (MC)",1000,0,5000);
+  TH1F* hMCDimuonMass         = new TH1F("hMCDimuonMass","Invariant Mass (MC)",1000,0,10000);
   TH1F* hRecoMuonPhi          = new TH1F("hRecoMuonPhi","Phi of Reco Muons",100,-5,5);
   TH1F* hRecoMuonEta          = new TH1F("hRecoMuonEta","Eta of Reco Muons",200,-10,10);
   TH1F* hMatchedMuonPhi       = new TH1F("hMatchedMuonPhi","Phi of Matched-reco Muons",100,-5,5);
@@ -76,10 +78,10 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
     int subleadingPtId = -1;
     int subleadingPtMCId = -1;
 
-    for ( unsigned int ip = 0; ip < T.muon_tevOptimized_pt->size(); ip++) {
-      float pt = T.muon_tevOptimized_pt->at(ip);
-      float phi = T.muon_tevOptimized_phi->at(ip);
-      float eta = T.muon_tevOptimized_eta->at(ip);
+    for ( unsigned int ip = 0; ip < T.mu_tevOptimized_pt->size(); ip++) {
+      float pt = T.mu_tevOptimized_pt->at(ip);
+      float phi = T.mu_tevOptimized_phi->at(ip);
+      float eta = T.mu_tevOptimized_eta->at(ip);
       hRecoMuonPhi->Fill(phi);
       hRecoMuonEta->Fill(eta);
       int mcId = mcpfinder.getMatchedMCId(ip); 
@@ -91,7 +93,7 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
         hMatchedMuonEta->Fill(eta);
       } else {
         hMatchedMC->Fill(0);
-	//cerr << "This is rejected : " << T.muon_tevOptimized_pt->at(ip) << " retval=" << mcId << endl;
+	//cerr << "This is rejected : " << T.mu_tevOptimized_pt->at(ip) << " retval=" << mcId << endl;
       }
       if ( pt > highPtThreshold ) {
 	nHighPtMuons++;
@@ -117,13 +119,13 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
     //cerr << "Leading Pt = " << leadingPt << " Sub-Leading Pt = " << subleadingPt << endl;
     if (leadingPtId>=0&&subleadingPtId>=0 && subleadingPt > highPtThreshold ) {
       TLorentzVector rp1,rp2;
-      rp1.SetXYZM(T.muon_tevOptimized_px->at(leadingPtId),
-                 T.muon_tevOptimized_py->at(leadingPtId),
-                 T.muon_tevOptimized_pz->at(leadingPtId),
+      rp1.SetXYZM(T.mu_tevOptimized_px->at(leadingPtId),
+                 T.mu_tevOptimized_py->at(leadingPtId),
+                 T.mu_tevOptimized_pz->at(leadingPtId),
 		 0.105); 
-      rp2.SetXYZM(T.muon_tevOptimized_px->at(subleadingPtId),
-                 T.muon_tevOptimized_py->at(subleadingPtId),
-                 T.muon_tevOptimized_pz->at(subleadingPtId),
+      rp2.SetXYZM(T.mu_tevOptimized_px->at(subleadingPtId),
+                 T.mu_tevOptimized_py->at(subleadingPtId),
+                 T.mu_tevOptimized_pz->at(subleadingPtId),
 		 0.105); 
       TLorentzVector dimuon(rp1+rp2);
       hDimuonMass->Fill(dimuon.M());
@@ -150,10 +152,10 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
       cerr << "Rejected reco particle pt1 = " << leadingPt << " pt2=" << subleadingPt  
            << "  pt1Id = " << leadingPtId << " pt2Id = " << subleadingPtId;
       if (leadingPtId>=0&&subleadingPtId>=0) {
-      cerr << " eta1 = " << T.muon_tevOptimized_eta->at(leadingPtId)
-	   << " eta2 = " << T.muon_tevOptimized_eta->at(subleadingPtId)
-	   << " pz1 = " << T.muon_tevOptimized_pz->at(leadingPtId)
-	   << " pz2 = " << T.muon_tevOptimized_pz->at(subleadingPtId);
+      cerr << " eta1 = " << T.mu_tevOptimized_eta->at(leadingPtId)
+	   << " eta2 = " << T.mu_tevOptimized_eta->at(subleadingPtId)
+	   << " pz1 = " << T.mu_tevOptimized_pz->at(leadingPtId)
+	   << " pz2 = " << T.mu_tevOptimized_pz->at(subleadingPtId);
       }
       cerr << endl;
 #endif

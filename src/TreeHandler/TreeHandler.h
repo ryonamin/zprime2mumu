@@ -19,22 +19,22 @@ class TreeHandler : public TChain
   std::vector<int>* mc_pdgId;                 
   std::vector<int>* mc_charge;
   std::vector<int>* mc_status;
-  std::vector<float>* muon_pt;
-  std::vector<float>* muon_ptError;
-  std::vector<float>* muon_phi;
-  std::vector<float>* muon_phiError;
-  std::vector<float>* muon_theta;
-  std::vector<float>* muon_thetaError;
-  std::vector<float>* muon_tevOptimized_pt;
-  std::vector<float>* muon_tevOptimized_ptError;
-  std::vector<float>* muon_tevOptimized_phi;
-  std::vector<float>* muon_tevOptimized_phiError;
-  std::vector<float>* muon_tevOptimized_eta;
-  std::vector<float>* muon_tevOptimized_etaError;
-  std::vector<int>*   muon_tevOptimized_charge;
-  std::vector<float>* muon_tevOptimized_px;
-  std::vector<float>* muon_tevOptimized_py;           
-  std::vector<float>* muon_tevOptimized_pz;           
+  std::vector<float>* mu_gt_pt;
+  std::vector<float>* mu_gt_ptError;
+  std::vector<float>* mu_gt_phi;
+  std::vector<float>* mu_gt_phiError;
+  std::vector<float>* mu_gt_theta;
+  std::vector<float>* mu_gt_thetaError;
+  std::vector<float>* mu_tevOptimized_pt;
+  std::vector<float>* mu_tevOptimized_ptError;
+  std::vector<float>* mu_tevOptimized_phi;
+  std::vector<float>* mu_tevOptimized_phiError;
+  std::vector<float>* mu_tevOptimized_eta;
+  std::vector<float>* mu_tevOptimized_etaError;
+  std::vector<int>*   mu_tevOptimized_charge;
+  std::vector<float>* mu_tevOptimized_px;
+  std::vector<float>* mu_tevOptimized_py;           
+  std::vector<float>* mu_tevOptimized_pz;           
   
   void DumpInputs() const;
   private :

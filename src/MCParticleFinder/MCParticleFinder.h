@@ -10,10 +10,14 @@ class MCParticleFinder : public TObject
   MCParticleFinder(TreeHandler& in);
   ~MCParticleFinder();
   int getMatchedMCId(int recoId);
-  void setNSig( float in ) { fnsig = in; }
+  void setNSig_Pt( float in ) { fnsig_pt = in; }
+  void setNSig_Phi( float in ) { fnsig_phi = in; }
+  void setNSig_Eta( float in ) { fnsig_eta = in; }
   private:
   TreeHandler& fT;
-  float fnsig;
+  float fnsig_pt;
+  float fnsig_phi;
+  float fnsig_eta;
   ClassDef(MCParticleFinder,1)
 };
 

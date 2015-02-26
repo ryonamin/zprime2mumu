@@ -16,22 +16,22 @@ TreeHandler::TreeHandler(std::string treename,
 	                                                 mc_pdgId(0),
 	                                                 mc_charge(0),
 	                                                 mc_status(0),
-			                                 muon_pt(0),
-			                                 muon_ptError(0),
-			                                 muon_phi(0),
-			                                 muon_phiError(0),
-			                                 muon_theta(0),
-			                                 muon_thetaError(0),
-			                                 muon_tevOptimized_pt(0),
-			                                 muon_tevOptimized_ptError(0),
-			                                 muon_tevOptimized_phi(0),
-			                                 muon_tevOptimized_phiError(0),
-			                                 muon_tevOptimized_eta(0),
-			                                 muon_tevOptimized_etaError(0),
-			                                 muon_tevOptimized_charge(0),
-			                                 muon_tevOptimized_px(0),
-			                                 muon_tevOptimized_py(0),
-			                                 muon_tevOptimized_pz(0)
+			                                 mu_gt_pt(0),
+			                                 mu_gt_ptError(0),
+			                                 mu_gt_phi(0),
+			                                 mu_gt_phiError(0),
+			                                 mu_gt_theta(0),
+			                                 mu_gt_thetaError(0),
+			                                 mu_tevOptimized_pt(0),
+			                                 mu_tevOptimized_ptError(0),
+			                                 mu_tevOptimized_phi(0),
+			                                 mu_tevOptimized_phiError(0),
+			                                 mu_tevOptimized_eta(0),
+			                                 mu_tevOptimized_etaError(0),
+			                                 mu_tevOptimized_charge(0),
+			                                 mu_tevOptimized_px(0),
+			                                 mu_tevOptimized_py(0),
+			                                 mu_tevOptimized_pz(0)
 {
   for (unsigned int i = 0; i < flist.size(); i++ ) {
     Add(flist[i].c_str());
@@ -46,22 +46,22 @@ TreeHandler::TreeHandler(std::string treename,
   SetBranchAddress("mc_pdgId"          , &mc_pdgId) ;
   SetBranchAddress("mc_charge"         , &mc_charge) ;
   SetBranchAddress("mc_status"         , &mc_status) ;
-  SetBranchAddress("muon_pt"            , &muon_pt) ;
-  SetBranchAddress("muon_ptError"       , &muon_ptError) ;
-  SetBranchAddress("muon_phi"           , &muon_phi) ;
-  SetBranchAddress("muon_phiError"      , &muon_phiError) ;
-  SetBranchAddress("muon_theta"         , &muon_theta) ;
-  SetBranchAddress("muon_thetaError"    , &muon_thetaError) ;
-  SetBranchAddress("muon_tevOptimized_pt",&muon_tevOptimized_pt) ;
-  SetBranchAddress("muon_tevOptimized_ptError",&muon_tevOptimized_ptError) ;
-  SetBranchAddress("muon_tevOptimized_phi",&muon_tevOptimized_phi) ;
-  SetBranchAddress("muon_tevOptimized_phiError",&muon_tevOptimized_phiError) ;
-  SetBranchAddress("muon_tevOptimized_eta",&muon_tevOptimized_eta) ;
-  SetBranchAddress("muon_tevOptimized_etaError",&muon_tevOptimized_etaError) ;
-  SetBranchAddress("muon_tevOptimized_charge",&muon_tevOptimized_charge) ;
-  SetBranchAddress("muon_tevOptimized_px",&muon_tevOptimized_px) ;
-  SetBranchAddress("muon_tevOptimized_py",&muon_tevOptimized_py) ;
-  SetBranchAddress("muon_tevOptimized_pz",&muon_tevOptimized_pz) ;
+  SetBranchAddress("mu_gt_pt"          , &mu_gt_pt) ;
+  SetBranchAddress("mu_gt_ptError"     , &mu_gt_ptError) ;
+  SetBranchAddress("mu_gt_phi"         , &mu_gt_phi) ;
+  SetBranchAddress("mu_gt_phiError"    , &mu_gt_phiError) ;
+  SetBranchAddress("mu_gt_theta"       , &mu_gt_theta) ;
+  SetBranchAddress("mu_gt_thetaError"  , &mu_gt_thetaError) ;
+  SetBranchAddress("mu_tevOptimized_pt",&mu_tevOptimized_pt) ;
+  SetBranchAddress("mu_tevOptimized_ptError",&mu_tevOptimized_ptError) ;
+  SetBranchAddress("mu_tevOptimized_phi",&mu_tevOptimized_phi) ;
+  SetBranchAddress("mu_tevOptimized_phiError",&mu_tevOptimized_phiError) ;
+  SetBranchAddress("mu_tevOptimized_eta",&mu_tevOptimized_eta) ;
+  SetBranchAddress("mu_tevOptimized_etaError",&mu_tevOptimized_etaError) ;
+  SetBranchAddress("mu_tevOptimized_charge",&mu_tevOptimized_charge) ;
+  SetBranchAddress("mu_tevOptimized_px",&mu_tevOptimized_px) ;
+  SetBranchAddress("mu_tevOptimized_py",&mu_tevOptimized_py) ;
+  SetBranchAddress("mu_tevOptimized_pz",&mu_tevOptimized_pz) ;
 }
 
 void TreeHandler::DumpInputs() const {
