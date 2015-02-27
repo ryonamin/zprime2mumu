@@ -62,10 +62,10 @@ class TreeHandler : public TChain
   std::vector<float>* mu_tevOptimized_py;           
   std::vector<float>* mu_tevOptimized_pz;           
   std::vector<float>* mu_tevOptimized_dz;
-  std::vector<float>* mu_tevOptimized_dz_beamspot;
+  std::vector<float>* mu_tevOptimized_dz_beamSpot;
   std::vector<float>* mu_tevOptimized_dz_firstPVtx;
   std::vector<float>* mu_tevOptimized_dxy;
-  std::vector<float>* mu_tevOptimized_dxy_beamspot;
+  std::vector<float>* mu_tevOptimized_dxy_beamSpot;
   std::vector<float>* mu_tevOptimized_dxy_firstPVtx;
   
   void DumpInputs() const;

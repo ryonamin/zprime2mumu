@@ -52,10 +52,10 @@ TreeHandler::TreeHandler(std::string treename,
 			                                 mu_tevOptimized_py(0),
 			                                 mu_tevOptimized_pz(0),
                                                          mu_tevOptimized_dz(0),
-                                                         mu_tevOptimized_dz_beamspot(0),
+                                                         mu_tevOptimized_dz_beamSpot(0),
                                                          mu_tevOptimized_dz_firstPVtx(0),
                                                          mu_tevOptimized_dxy(0),
-                                                         mu_tevOptimized_dxy_beamspot(0),
+                                                         mu_tevOptimized_dxy_beamSpot(0),
                                                          mu_tevOptimized_dxy_firstPVtx(0)
 {
   for (unsigned int i = 0; i < flist.size(); i++ ) {
@@ -112,10 +112,10 @@ TreeHandler::TreeHandler(std::string treename,
   SetBranchAddress("mu_tevOptimized_py"            , &mu_tevOptimized_py) ;
   SetBranchAddress("mu_tevOptimized_pz"            , &mu_tevOptimized_pz) ;
   SetBranchAddress("mu_tevOptimized_dz"            , &mu_tevOptimized_dz            ) ;  
-  SetBranchAddress("mu_tevOptimized_dz_beamspot"   , &mu_tevOptimized_dz_beamspot   ) ;   
+  SetBranchAddress("mu_tevOptimized_dz_beamSpot"   , &mu_tevOptimized_dz_beamSpot   ) ;   
   SetBranchAddress("mu_tevOptimized_dz_firstPVtx"  , &mu_tevOptimized_dz_firstPVtx  ) ; 
   SetBranchAddress("mu_tevOptimized_dxy"           , &mu_tevOptimized_dxy           ) ;  
-  SetBranchAddress("mu_tevOptimized_dxy_beamspot"  , &mu_tevOptimized_dxy_beamspot  ) ; 
+  SetBranchAddress("mu_tevOptimized_dxy_beamSpot"  , &mu_tevOptimized_dxy_beamSpot  ) ; 
   SetBranchAddress("mu_tevOptimized_dxy_firstPVtx" , &mu_tevOptimized_dxy_firstPVtx ) ; 
 }
 
