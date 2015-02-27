@@ -9,7 +9,8 @@ ClassImp(MCParticleFinder)
 MCParticleFinder::MCParticleFinder(TreeHandler& in) : fT(in),
                                                       fnsig_pt(5.),
                                                       fnsig_phi(5.),
-                                                      fnsig_eta(5.)
+                                                      fnsig_eta(5.),
+						      fuseChargeInfo(false)
 {
 }
 
@@ -22,7 +23,9 @@ int MCParticleFinder::getMatchedMCId(int recoId)
   for ( int ip = 0; ip < fT.mc_pt->size(); ip++ ) {
     if ( (*fT.mc_status)[ip] != 1 ) continue; // only check the final state particles
     if ( TMath::Abs((*fT.mc_pdgId)[ip]) != 13 ) continue;
-    //if ( (*fT.mc_charge)[ip] != (*fT.mu_tevOptimized_charge)[recoId] ) continue;
+    if (fuseChargeInfo) {
+      if ( (*fT.mc_charge)[ip] != (*fT.mu_tevOptimized_charge)[recoId] ) continue;
+    }
     if ( (*fT.mc_pt)[ip] < (*fT.mu_tevOptimized_pt)[recoId] - fnsig_pt*(*fT.mu_tevOptimized_ptError)[recoId] ) continue;
     if ( (*fT.mc_pt)[ip] > (*fT.mu_tevOptimized_pt)[recoId] + fnsig_pt*(*fT.mu_tevOptimized_ptError)[recoId] ) continue;
 

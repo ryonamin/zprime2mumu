@@ -29,6 +29,7 @@ void MyAnalyzer_skeleton(vector<string>& fpaths, string outfilename) {
   mcpfinder.setNSig_Pt(10.);  // require 10 sigma for matching in pt
   mcpfinder.setNSig_Phi(10.); // require 10 sigma for matching in phi 
   mcpfinder.setNSig_Eta(10.); // require 10 sigma for matching in eta
+  mcpfinder.useChargeInfo(false); // charge information will not be used for matching
 
   // Event Loop
   for ( int ev = 0; ev < T.GetEntries(); ev++ ) {
@@ -41,9 +42,9 @@ void MyAnalyzer_skeleton(vector<string>& fpaths, string outfilename) {
 
       // find the matched mc particle
       // mcId > 0 : only one candidate is found 
-      int mcId = mcpfinder.getMatchedMCId(ip); 
-      if (mcId<0) std::cout << "No matched MC particle." << std::endl;
-      else std::cout << "MC Pt = " << T.mc_pt->at(mcId) << std::endl;
+      //int mcId = mcpfinder.getMatchedMCId(ip); 
+      //if (mcId<0) std::cout << "No matched MC particle." << std::endl;
+      //else std::cout << "MC Pt = " << T.mc_pt->at(mcId) << std::endl;
     }
   }
 

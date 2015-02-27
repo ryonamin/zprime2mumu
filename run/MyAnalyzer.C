@@ -36,6 +36,7 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
   mcpfinder.setNSig_Pt(10.); // require 1000 sigma for matching in pt
   mcpfinder.setNSig_Phi(10.); // require 10 sigma for matching in phi 
   mcpfinder.setNSig_Eta(10.); // require 10 sigma for matching in eta
+  mcpfinder.useChargeInfo(false); // charge information will not be used for matching
 
   int nevents = T.GetEntries();
 
@@ -58,6 +59,7 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
 
   int nHighPtMuonsTotal = 0;
   int nHighPtMuonsWithMatchedMC = 0;
+  //std::cerr << "OK" << std::endl;
 
   for ( int ev = 0; ev < nevents; ev++ ) {
     T.GetEntry(ev);
