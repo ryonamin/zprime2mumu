@@ -90,7 +90,7 @@ void MyAnalyzer(vector<string>& fpaths, string outfilename) {
       float eta = T.mu_tevOptimized_eta->at(ip);
       hRecoMuonPhi->Fill(phi);
       hRecoMuonEta->Fill(eta);
-      int mcId = mcpfinder.getMatchedMCId(ip); 
+      int mcId = mcpfinder.getTeVMuonMatchedMCId(ip); 
       // mcId < 0 --> no matched MC particle.
       if (mcId > 0) {
         if ( T.mc_pt->at(mcId) > highPtThreshold ) {

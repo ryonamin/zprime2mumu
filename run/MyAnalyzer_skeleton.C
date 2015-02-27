@@ -42,9 +42,9 @@ void MyAnalyzer_skeleton(vector<string>& fpaths, string outfilename) {
 
       // find the matched mc particle
       // mcId > 0 : only one candidate is found 
-      //int mcId = mcpfinder.getMatchedMCId(ip); 
-      //if (mcId<0) std::cout << "No matched MC particle." << std::endl;
-      //else std::cout << "MC Pt = " << T.mc_pt->at(mcId) << std::endl;
+      int mcId = mcpfinder.getGlobalMuonMatchedMCId(ip); 
+      if (mcId<0) std::cout << "No matched MC particle." << std::endl;
+      else std::cout << "MC Pt = " << T.mc_pt->at(mcId) << std::endl;
     }
   }
 

@@ -9,7 +9,8 @@ class MCParticleFinder : public TObject
   public:
   MCParticleFinder(TreeHandler& in);
   ~MCParticleFinder();
-  int getMatchedMCId(int recoId);
+  int getGlobalMuonMatchedMCId(int recoId);
+  int getTeVMuonMatchedMCId(int recoId);
   void setNSig_Pt( float in )   { fnsig_pt = in; }
   void setNSig_Phi( float in )  { fnsig_phi = in; }
   void setNSig_Eta( float in )  { fnsig_eta = in; }

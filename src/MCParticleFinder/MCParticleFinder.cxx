@@ -17,7 +17,34 @@ MCParticleFinder::MCParticleFinder(TreeHandler& in) : fT(in),
 MCParticleFinder::~MCParticleFinder(){
 }
 
-int MCParticleFinder::getMatchedMCId(int recoId)
+int MCParticleFinder::getGlobalMuonMatchedMCId(int recoId)
+{
+  std::vector<int> nMatched;
+  for ( int ip = 0; ip < fT.mc_pt->size(); ip++ ) {
+    if ( (*fT.mc_status)[ip] != 1 ) continue; // only check the final state particles
+    if ( TMath::Abs((*fT.mc_pdgId)[ip]) != 13 ) continue;
+    if (fuseChargeInfo) {
+      if ( (*fT.mc_charge)[ip] != (*fT.mu_gt_charge)[recoId] ) continue;
+    }
+    if ( (*fT.mc_pt)[ip] < (*fT.mu_gt_pt)[recoId] - fnsig_pt*(*fT.mu_gt_ptError)[recoId] ) continue;
+    if ( (*fT.mc_pt)[ip] > (*fT.mu_gt_pt)[recoId] + fnsig_pt*(*fT.mu_gt_ptError)[recoId] ) continue;
+
+    // Take periodic boundary into account
+    float dphi = TMath::Abs( fT.mc_phi->at(ip) - fT.mu_gt_phi->at(recoId) );
+    // Take smaller central angle
+    dphi = std::min( dphi, float(2*TMath::Pi()-dphi) );
+    if ( dphi > fnsig_phi*fT.mu_gt_phiError->at(recoId) ) continue;
+
+    if ( (*fT.mc_eta)[ip] < (*fT.mu_gt_eta)[recoId] - fnsig_eta*(*fT.mu_gt_etaError)[recoId] ) continue;
+    if ( (*fT.mc_eta)[ip] > (*fT.mu_gt_eta)[recoId] + fnsig_eta*(*fT.mu_gt_etaError)[recoId] ) continue;
+    nMatched.push_back(ip);
+  }
+  if (nMatched.size()==1) return nMatched[0];
+  else if (nMatched.size() > 1 ) return -1;
+  else  return -2;
+}
+
+int MCParticleFinder::getTeVMuonMatchedMCId(int recoId)
 {
   std::vector<int> nMatched;
   for ( int ip = 0; ip < fT.mc_pt->size(); ip++ ) {
@@ -43,4 +70,3 @@ int MCParticleFinder::getMatchedMCId(int recoId)
   else if (nMatched.size() > 1 ) return -1;
   else  return -2;
 }
-
