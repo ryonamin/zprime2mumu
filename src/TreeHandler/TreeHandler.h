@@ -20,11 +20,16 @@ class TreeHandler : public TChain
   std::vector<int>* mc_charge;
   std::vector<int>* mc_status;
   std::vector<float>* mu_gt_pt;
+  std::vector<float>* mu_gt_px;
+  std::vector<float>* mu_gt_py;
+  std::vector<float>* mu_gt_pz;
   std::vector<float>* mu_gt_ptError;
   std::vector<float>* mu_gt_phi;
   std::vector<float>* mu_gt_phiError;
   std::vector<float>* mu_gt_theta;
   std::vector<float>* mu_gt_thetaError;
+  std::vector<float>* mu_gt_eta;
+  std::vector<float>* mu_gt_etaError;
   std::vector<float>* mu_tevOptimized_pt;
   std::vector<float>* mu_tevOptimized_ptError;
   std::vector<float>* mu_tevOptimized_phi;
@@ -35,6 +40,7 @@ class TreeHandler : public TChain
   std::vector<float>* mu_tevOptimized_px;
   std::vector<float>* mu_tevOptimized_py;           
   std::vector<float>* mu_tevOptimized_pz;           
+  std::vector<bool>* mu_isGlobalMuon;           
   
   void DumpInputs() const;
   private :

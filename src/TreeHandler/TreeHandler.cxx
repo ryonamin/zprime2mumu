@@ -17,11 +17,16 @@ TreeHandler::TreeHandler(std::string treename,
    mc_charge(0),
    mc_status(0),
    mu_gt_pt(0),
+   mu_gt_px(0),
+   mu_gt_py(0),
+   mu_gt_pz(0),
    mu_gt_ptError(0),
    mu_gt_phi(0),
    mu_gt_phiError(0),
    mu_gt_theta(0),
    mu_gt_thetaError(0),
+   mu_gt_eta(0),
+   mu_gt_etaError(0),
    mu_tevOptimized_pt(0),
    mu_tevOptimized_ptError(0),
    mu_tevOptimized_phi(0),
@@ -31,7 +36,8 @@ TreeHandler::TreeHandler(std::string treename,
    mu_tevOptimized_charge(0),
    mu_tevOptimized_px(0),
    mu_tevOptimized_py(0),
-   mu_tevOptimized_pz(0)
+   mu_tevOptimized_pz(0),
+   mu_isGlobalMuon(0)
 {
    for (unsigned int i = 0; i < flist.size(); i++ ) {
       Add(flist[i].c_str());
@@ -47,11 +53,16 @@ TreeHandler::TreeHandler(std::string treename,
    SetBranchAddress("mc_charge"         , &mc_charge) ;
    SetBranchAddress("mc_status"         , &mc_status) ;
    SetBranchAddress("mu_gt_pt"          , &mu_gt_pt) ;
+   SetBranchAddress("mu_gt_px"          , &mu_gt_px) ;
+   SetBranchAddress("mu_gt_py"          , &mu_gt_py) ;
+   SetBranchAddress("mu_gt_pz"          , &mu_gt_pz) ;
    SetBranchAddress("mu_gt_ptError"     , &mu_gt_ptError) ;
    SetBranchAddress("mu_gt_phi"         , &mu_gt_phi) ;
    SetBranchAddress("mu_gt_phiError"    , &mu_gt_phiError) ;
    SetBranchAddress("mu_gt_theta"       , &mu_gt_theta) ;
    SetBranchAddress("mu_gt_thetaError"  , &mu_gt_thetaError) ;
+   SetBranchAddress("mu_gt_eta"  , &mu_gt_eta) ;
+   SetBranchAddress("mu_gt_etaError"  , &mu_gt_etaError) ;
    SetBranchAddress("mu_tevOptimized_pt",&mu_tevOptimized_pt) ;
    SetBranchAddress("mu_tevOptimized_ptError",&mu_tevOptimized_ptError) ;
    SetBranchAddress("mu_tevOptimized_phi",&mu_tevOptimized_phi) ;
@@ -62,6 +73,7 @@ TreeHandler::TreeHandler(std::string treename,
    SetBranchAddress("mu_tevOptimized_px",&mu_tevOptimized_px) ;
    SetBranchAddress("mu_tevOptimized_py",&mu_tevOptimized_py) ;
    SetBranchAddress("mu_tevOptimized_pz",&mu_tevOptimized_pz) ;
+   SetBranchAddress("mu_isGlobalMuon",&mu_isGlobalMuon) ;
 }
 
 void TreeHandler::DumpInputs() const {
