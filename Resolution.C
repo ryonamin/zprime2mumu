@@ -61,37 +61,38 @@ void Resolution::Loop()
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
       if(jentry%1000 == 0) cout << jentry << " over " << nentries << endl;
-      TLorentzVector recomu_1,recomu_2, genmu_1,genmu_2;
+      TLorentzVector recomu_1, recomu_2, genmu_1, genmu_2;
 
       Long64_t ientry = LoadTree(jentry);
       if (ientry < 0) break;
       nb = fChain->GetEntry(jentry);  nbytes += nb;
       // if (Cut(ientry) < 0) continue;
 
-      for(int i = 0; i < (*mu_gt_pt).size();i++){
+      for(int i = 0; i < mc_n; i++) {
 	 //The first line just ensures that the global muon exists.
 	 //In Aidan's code all muons are stored in a same vector but not all of them are global. 
-	 if((*mu_gt_pt)[i] <10) continue;
-	 double dR = 0.3; 
-	 double mupt = 0;
+	 //Look only at muons 
+	 if(abs((*mc_pdgId)[i])!=13) continue; 
+	 //If ptgen<30 we don't care
+	 if((*mc_pt)[i] < 30) continue;
 	 bool matchgen = false;
-	 TLorentzVector recomu,genmu; 
-	 recomu.SetPxPyPzE((*mu_gt_px)[i],(*mu_gt_py)[i],(*mu_gt_pz)[i],(*mu_gt_p)[i]);
-	 if(!PassHighPtSel(i)) continue;
+	 TLorentzVector genmu,recomu;
+	 genmu.SetPxPyPzE((*mc_px)[i],(*mc_py)[i],(*mc_pz)[i],(*mc_energy)[i]);
 
-	 for(int j = 0; j < mc_n; j++){
-	    //Look only at muons 
-	    if(abs((*mc_pdgId)[j])!=13) continue; 
-	    //If ptgen<30 we don't care
-	    if((*mc_pt)[j] < 30) continue;
-	    TLorentzVector genmu_loop;
-	    genmu_loop.SetPxPyPzE((*mc_px)[j],(*mc_py)[j],(*mc_pz)[j],(*mc_energy)[j]);
+
+	 for(int j = 0; j < (*mu_gt_pt).size(); j++) {
+	    if((*mu_gt_pt)[j] <10) continue;
+	    if(!PassHighPtSel(j)) continue;
+	    double dR = 0.3; 
+	    double mupt = 0;
+	    TLorentzVector recomu_loop; 
+	    recomu_loop.SetPxPyPzE((*mu_gt_px)[j],(*mu_gt_py)[j],(*mu_gt_pz)[j],(*mu_gt_p)[j]);
 	    //Gen-Reco matching: do a delta R matching and save the gen particle idx
 	    //Also require that the charge is correctly measured
-	    if(genmu_loop.DeltaR(recomu) < dR && genmu_loop.Pt() > mupt && (*mc_charge)[j] == (*mu_gt_charge)[i]) {
+	    if(recomu_loop.DeltaR(genmu) < dR && recomu_loop.Pt() > mupt && (*mc_charge)[i] == (*mu_gt_charge)[j]) {
 	       matchgen = true;
-	       mupt = genmu_loop.Pt();
-	       genmu = genmu_loop;
+	       mupt = recomu_loop.Pt();
+	       recomu = recomu_loop;
 	    }
 	 }
 
@@ -127,7 +128,7 @@ void Resolution::Loop()
 
    }
    cout << "Efficiency: " << 1.-((double)no_reco)/nentries << endl ;
-   cout << "Acceptance: " << 1.-((double)no_acc)/nentries << endl ;
+   //cout << "Acceptance: " << 1.-((double)no_acc)/nentries << endl ;
    myfile->Write();  
    Resolvs(h2d_mass);
    Resolvs(h2d_pt_barrel);
