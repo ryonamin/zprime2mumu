@@ -44,6 +44,9 @@ void Resolution::Loop()
    TH1D * h1d_pt_endcaps = new TH1D("h1d_pt_endcaps","",100,-1,1);
    TH2D * h2d_pt_endcaps = new TH2D("h2d_pt_endcaps","",100,-1,1,10,0,2600);  
 
+   TH1D*  h_inv_genmass = new TH1D("h_inv_genmass","",100,0,5200) ;
+   TH1D*  h_inv_recomass = new TH1D("h_inv_recomass","",100,0,5200) ;
+
    TH1D * h1d_mass = new TH1D("h1d_mass","",100,-1,1);
    TH2D * h2d_mass = new TH2D("h2d_mass","",100,-1,1,10,0,5200);
 
@@ -54,7 +57,8 @@ void Resolution::Loop()
 
    Long64_t nbytes = 0, nb = 0;
 
-   for (Long64_t jentry=0; jentry</*nentries*/3000;jentry++) {
+   int no_reco = 0;
+   for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
       if(jentry%1000 == 0) cout << jentry << " over " << nentries << endl;
       TLorentzVector recomu_1,recomu_2, genmu_1,genmu_2;
@@ -105,20 +109,25 @@ void Resolution::Loop()
 	       h1d_pt_endcaps->Fill(1-recomu.Pt()/genmu.Pt());
 	    }
 	 }	  
+	 // Else, no reconstruction: problem in efficiency
+	 else no_reco++;
       }
 
       //Compute the invariant mass     
       double genmass = (genmu_1 + genmu_2).M();
       double recomass = (recomu_1 + recomu_2).M();
       //If two reco muons matching gen muons are found, fill histos
-      if(recomu_1.E() != 0 && recomu_2.E() != 0){
-
+      if(recomu_1.E() != 0 && recomu_2.E() != 0) {
+	 h_inv_genmass->Fill(genmass) ;
+	 h_inv_recomass->Fill(recomass) ;
 	 h1d_mass->Fill(1-recomass/genmass);
 	 h2d_mass->Fill(1-recomass/genmass, genmass);
       }
 
 
    }
+   cout << "Efficiency: " << 1.-((double)no_reco)/nentries << endl ;
+   cout << "Acceptance: " << 1.-((double)no_acc)/nentries << endl ;
    myfile->Write();  
    Resolvs(h2d_mass);
    Resolvs(h2d_pt_barrel);
@@ -129,7 +138,7 @@ void Resolution::Loop()
 
 
 bool Resolution::PassHighPtSel(int n){
-   //This is an old selection that needs to be updated... but better than nothing.
+   //This is an old selection that needs to be updated... but better than nothing. Compare with selection in AN-15-061
    //Be careful with it as I am not sure I found the right variables in the IIHE tree. 
    //This tree is really a mess at the moment... Apparently All the muons (regardless of their type) are stored in a same vector and you end up with empty entries. 
    // Also some of the variables are labelled mu_gt_X, but others mu_X, which is confusing... 
@@ -147,7 +156,7 @@ bool Resolution::PassHighPtSel(int n){
 
    if ((*mu_gt_pt)[n] > muon_pt_min
 	 && (*mu_gt_ptError)[n] / (*mu_gt_pt)[n] < muon_dptOverPt
-	 && fabs((*mu_gt_eta)[n]) < muon_etaMax
+	 //&& fabs((*mu_gt_eta)[n]) < muon_etaMax
 	 && (*mu_numberOfValidPixelHits)[n] >= muon_nHitsMinPixel
 	 //      && mu_gt_nhitsmuons[n] >= muon_nHitsMinMuon  I had to comment this line because I don't find the variable in the tree... 
 	 // but I think this condition (above) is superseeded by mu_numberOfMatchedStations>=muon_nSegMatchMin      
@@ -166,6 +175,7 @@ bool Resolution::PassHighPtSel(int n){
 void Resolution::Resolvs(TH2D * myh2d){
    TString hname=myh2d->GetName(); 
    const int nbbins = myh2d->GetNbinsY();
+   //if(nbbins == 0) cout << "Danger" << endl;
    double resol[nbbins], xaxis[nbbins],errresol[nbbins],errxaxis[nbbins];
    //Loop over the mass/pt bins and fit a gaussian to each slice. 
    for(int i = 1 ; i <= myh2d->GetNbinsY(); i++){

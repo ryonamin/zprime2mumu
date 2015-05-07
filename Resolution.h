@@ -1199,9 +1199,9 @@ Resolution::Resolution(TTree *tree) : fChain(0)
    // if parameter tree is not specified (or zero), connect the file
    // used to generate this class and read the Tree.
    if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("ZprimeToMuMu_M-5000_Tune4C_13TeV-pythia8_tsg_PU40bx25_POSTLS162_V2-v1.root");
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("ZprimeToMuMu_M-2500_Tune2Zstar_14TeV-pythia6_GEM2019Upg14DR-Phase1age1kfixJan23_PU140bx25_PH1_1K_FB_V2-v1.root");
       if (!f || !f->IsOpen()) {
-	 f = new TFile("ZprimeToMuMu_M-5000_Tune4C_13TeV-pythia8_tsg_PU40bx25_POSTLS162_V2-v1.root");
+	 f = new TFile("ZprimeToMuMu_M-2500_Tune2Zstar_14TeV-pythia6_GEM2019Upg14DR-Phase1age1kfixJan23_PU140bx25_PH1_1K_FB_V2-v1.root");
       }
       f->GetObject("IIHEAnalysis",tree);
 
