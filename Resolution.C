@@ -58,6 +58,11 @@ void Resolution::Loop()
    Long64_t nbytes = 0, nb = 0;
 
    int no_reco = 0;
+   bool gem_reco = false;
+   bool gem_gen = false;
+   int gem_ev = 0;
+   int counter_gen[3] = {};
+   int counter_reco[3] = {};
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
       if(jentry%1000 == 0) cout << jentry << " over " << nentries << endl;
@@ -68,25 +73,28 @@ void Resolution::Loop()
       nb = fChain->GetEntry(jentry);  nbytes += nb;
       // if (Cut(ientry) < 0) continue;
 
+      bool gem_reco = false;
+      bool gem_gen = false;
       for(int i = 0; i < mc_n; i++) {
 	 //The first line just ensures that the global muon exists.
 	 //In Aidan's code all muons are stored in a same vector but not all of them are global. 
 	 //Look only at muons 
 	 if(abs((*mc_pdgId)[i])!=13) continue; 
 	 //If ptgen<30 we don't care
-	 if((*mc_pt)[i] < 30) continue;
+	 //if((*mc_pt)[i] < 30) continue;
 	 bool matchgen = false;
 	 TLorentzVector genmu,recomu;
 	 genmu.SetPxPyPzE((*mc_px)[i],(*mc_py)[i],(*mc_pz)[i],(*mc_energy)[i]);
-
+	 if(genmu.Eta() > 1.5 && genmu.Eta() < 2.2) gem_gen = true ;
 
 	 for(int j = 0; j < (*mu_gt_pt).size(); j++) {
-	    if((*mu_gt_pt)[j] <10) continue;
-	    if(!PassHighPtSel(j)) continue;
+	    //if((*mu_gt_pt)[j] <10) continue;
+	    //if(!PassHighPtSel(j)) continue;
 	    double dR = 0.3; 
 	    double mupt = 0;
 	    TLorentzVector recomu_loop; 
 	    recomu_loop.SetPxPyPzE((*mu_gt_px)[j],(*mu_gt_py)[j],(*mu_gt_pz)[j],(*mu_gt_p)[j]);
+	    if(recomu_loop.Eta() > 1.5 && recomu_loop.Eta() < 2.2) gem_reco = true ;
 	    //Gen-Reco matching: do a delta R matching and save the gen particle idx
 	    //Also require that the charge is correctly measured
 	    if(recomu_loop.DeltaR(genmu) < dR && recomu_loop.Pt() > mupt && (*mc_charge)[i] == (*mu_gt_charge)[j]) {
@@ -99,7 +107,7 @@ void Resolution::Loop()
 	 //if the reco matches the gen, fill histos
 	 if(matchgen) {
 	    if(recomu_1.E() != 0 && recomu_2.E() == 0) { recomu_2 = recomu; genmu_2 = genmu; }
-	    if(recomu_1.E() == 0){ recomu_1 = recomu  ; genmu_1 =genmu; }
+	    if(recomu_1.E() == 0){ recomu_1 = recomu; genmu_1 =genmu; }
 	    //Split barrel and endcaps
 	    if(fabs( (*mu_gt_eta)[i]) < 1.2) {
 	       h2d_pt_barrel->Fill(1-recomu.Pt()/genmu.Pt(), genmu.Pt());
@@ -119,24 +127,37 @@ void Resolution::Loop()
       double recomass = (recomu_1 + recomu_2).M();
       //If two reco muons matching gen muons are found, fill histos
       if(recomu_1.E() != 0 && recomu_2.E() != 0) {
+	 if(abs(genmu_1.Eta()) < 2.4 && abs(genmu_2.Eta() < 2.4)) {
+	    counter_gen[0]++; 
+	    if(genmu_1.Pt() > 10 && genmu_2.Pt() > 10) {
+	       counter_gen[1]++; 
+	       if((abs(genmu_1.Eta()) < 2.2 && abs(genmu_1.Eta()) > 1.5) || (abs(genmu_2.Eta()) < 2.2 && abs(genmu_2.Eta()) > 1.5)) counter_gen[2]++;
+	    }
+	 }
+	 if(abs(recomu_1.Eta()) < 2.4 && abs(recomu_2.Eta() < 2.4)) {
+	    counter_reco[0]++; 
+	    if(recomu_1.Pt() > 10 && recomu_2.Pt() > 10) {
+	       counter_reco[1]++; 
+	       if((abs(recomu_1.Eta()) < 2.2 && abs(recomu_1.Eta()) > 1.5) || (abs(recomu_2.Eta()) < 2.2 && abs(recomu_2.Eta()) > 1.5)) counter_reco[2]++;
+	    }
+	 }
+	 
+	 if(gem_reco) gem_ev++;
 	 h_inv_genmass->Fill(genmass) ;
 	 h_inv_recomass->Fill(recomass) ;
 	 h1d_mass->Fill(1-recomass/genmass);
 	 h2d_mass->Fill(1-recomass/genmass, genmass);
       }
-
-
    }
    cout << "Efficiency: " << 1.-((double)no_reco)/nentries << endl ;
-   //cout << "Acceptance: " << 1.-((double)no_acc)/nentries << endl ;
+   cout << "GE1/1 acceptance: " << (double)gem_ev/nentries << endl ;
+   cout << "counters gen " << counter_gen[0] << "," << counter_gen[1] << "," << counter_gen[2] << endl;
+   cout << "counters reco " << counter_reco[0] << "," << counter_reco[1] << "," << counter_reco[2] << endl;
    myfile->Write();  
    Resolvs(h2d_mass);
    Resolvs(h2d_pt_barrel);
    Resolvs(h2d_pt_endcaps);
 }
-
-
-
 
 bool Resolution::PassHighPtSel(int n){
    //This is an old selection that needs to be updated... but better than nothing. Compare with selection in AN-15-061
