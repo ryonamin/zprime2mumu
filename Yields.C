@@ -71,6 +71,11 @@ void Yields::Loop()
    TH1D * h_reco2_pz = new TH1D("h_reco2_pz","",100,-6000,6000);
    TH1D * h_reco2_e  = new TH1D("h_reco2_e" ,"",100,0,6000);
 
+   TH1D * h_gen1_eta  = new TH1D("h_gen1_eta" ,"",100,-5,5);
+   TH1D * h_gen2_eta  = new TH1D("h_gen2_eta" ,"",100,-5,5);
+   TH1D * h_gen1_pt  = new TH1D("h_gen1_pt" ,"",100,0,3000);
+   TH1D * h_gen2_pt  = new TH1D("h_gen2_pt" ,"",100,0,3000);
+
    if (fChain == 0) return;
 
    Long64_t nentries = fChain->GetEntries();
@@ -79,7 +84,7 @@ void Yields::Loop()
 
    int no_reco = 0;
    int counter_gen[4] = {0};
-   int counter_reco[4] = {0};
+   int counter_reco[5] = {0};
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
       if(jentry%1000 == 0) cout << jentry << " over " << nentries << endl;
@@ -115,9 +120,15 @@ void Yields::Loop()
 	       genmu_2 = genmu[i];
 	    }
 	 }
+	 
+	 h_gen1_eta->Fill(genmu_1.Eta());
+	 h_gen2_eta->Fill(genmu_2.Eta());      
+	 h_gen1_pt->Fill(genmu_1.Pt());
+	 h_gen2_pt->Fill(genmu_2.Pt());
+	 
 	 if(abs(genmu_1.Eta()) < 2.4 && abs(genmu_2.Eta()) < 2.4) {
 	    counter_gen[1]++ ; 
-	    if(genmu_1.Pt() > 30 && genmu_2.Pt() > 30) {
+	    if(genmu_1.Pt() > 10 && genmu_2.Pt() > 10) {
 	       h_gen1_px->Fill(genmu_1.Px());
 	       h_gen1_py->Fill(genmu_1.Py());
 	       h_gen1_pz->Fill(genmu_1.Pz());
@@ -141,23 +152,29 @@ void Yields::Loop()
 	 recomu.push_back(recomu_tmp) ;
       }
 
+      int index1(0), index2(0);
       TLorentzVector recomu_1, recomu_2;
       if(recomu.size() > 1) { // there are at least two muons around
 	 counter_reco[0]++ ; // all events
 	 recomu_1 = recomu[0] ;
+	 index1 = 0;
 	 recomu_2 = recomu[1] ;
+	 index2 = 1;
 	 for(int i = 0; i < (int)recomu.size(); i++) {
 	    if(recomu[i].Pt() > recomu_1.Pt() && recomu[i] != recomu_1) {
 	       recomu_2 = recomu_1;
+	       index2 = index1;
 	       recomu_1 = recomu[i];
+	       index1 = i;
 	    }
 	    else if(recomu[i].Pt() > recomu_2.Pt() && recomu[i] != recomu_1) {
 	       recomu_2 = recomu[i];
+	       index2 = i;
 	    }
 	 }
 	 if(abs(recomu_1.Eta()) < 2.4 && abs(recomu_2.Eta() < 2.4)) {
 	    counter_reco[1]++ ; 
-	    if(recomu_1.Pt() > 30 && recomu_2.Pt() > 30) {
+	    if(recomu_1.Pt() > 10 && recomu_2.Pt() > 10) {
 	        h_reco1_px->Fill(recomu_1.Px());
 	        h_reco1_py->Fill(recomu_1.Py());
 	        h_reco1_pz->Fill(recomu_1.Pz());
@@ -167,8 +184,10 @@ void Yields::Loop()
 	        h_reco2_pz->Fill(recomu_2.Pz());
 	        h_reco2_e->Fill(recomu_2.P());
 	        counter_reco[2]++ ; 
-	       if((abs(recomu_1.Eta()) > 1.5 && abs(recomu_1.Eta()) < 2.2) || (abs(recomu_2.Eta()) > 1.5 && abs(recomu_2.Eta()) < 2.2))
-		  counter_reco[3]++ ;
+		if(PassHighPtSel(index1) && PassHighPtSel(index2)) counter_reco[3]++;
+	        if((abs(recomu_1.Eta()) > 1.5 && abs(recomu_1.Eta()) < 2.2) || (abs(recomu_2.Eta()) > 1.5 && abs(recomu_2.Eta()) < 2.2)) {
+		  counter_reco[4]++ ;
+	       }
 	    }
 	 }
       }
@@ -179,12 +198,13 @@ void Yields::Loop()
    cout << "eta 2.4 acceptance:         " << counter_gen[1] << endl;
    cout << "10 GeV pT cut:              " << counter_gen[2] << endl;
    cout << "At least one muon in GE1/1: " << counter_gen[3] << endl;
-   cout << "=================" << endl;
+   cout << "==================" << endl;
    cout << "R E C O  L E V E L" << endl;
    cout << "All events:                 " << counter_reco[0] << endl;
    cout << "eta 2.4 acceptance:         " << counter_reco[1] << endl;
    cout << "10 GeV pT cut:              " << counter_reco[2] << endl;
-   cout << "At least one muon in GE1/1: " << counter_reco[3] << endl;
+   cout << "Pass selection:             " << counter_reco[3] << endl;
+   cout << "At least one muon in GE1/1: " << counter_reco[4] << endl;
 
    myfile->Write();
    myfile->Close();
