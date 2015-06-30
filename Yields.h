@@ -1199,9 +1199,9 @@ Yields::Yields(TTree *tree) : fChain(0)
    // if parameter tree is not specified (or zero), connect the file
    // used to generate this class and read the Tree.
    if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("ZprimeToMuMu_M-2500_Tune2Zstar_14TeV-pythia6_GEM2019Upg14DR-Phase1age1kfixJan23_PU140bx25_PH1_1K_FB_V2-v1.root");
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("outfile.root");
       if (!f || !f->IsOpen()) {
-	 f = new TFile("ZprimeToMuMu_M-2500_Tune2Zstar_14TeV-pythia6_GEM2019Upg14DR-Phase1age1kfixJan23_PU140bx25_PH1_1K_FB_V2-v1.root");
+	 f = new TFile("outfile.root");
       }
       f->GetObject("IIHEAnalysis",tree);
 
@@ -2295,12 +2295,15 @@ void Yields::Init(TTree *tree)
    fChain->SetBranchStatus("mc_pdgId",1);
    fChain->SetBranchStatus("mc_status",1);
    fChain->SetBranchStatus("mc_n",1);
+   fChain->SetBranchStatus("mc_index",1);
    fChain->SetBranchStatus("mc_pt",1);
    fChain->SetBranchStatus("mc_px",1);
    fChain->SetBranchStatus("mc_py",1);
    fChain->SetBranchStatus("mc_pz",1);
    fChain->SetBranchStatus("mc_energy",1);
    fChain->SetBranchStatus("mc_charge",1);
+   fChain->SetBranchStatus("mc_mother_pdgId",1);
+   fChain->SetBranchStatus("mc_mother_index",1);
    fChain->SetBranchStatus("mu_gt_charge",1);
    fChain->SetBranchStatus("mu_isGlobalMuon",1);
 
