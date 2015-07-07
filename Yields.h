@@ -1199,9 +1199,9 @@ Yields::Yields(TTree *tree) : fChain(0)
    // if parameter tree is not specified (or zero), connect the file
    // used to generate this class and read the Tree.
    if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("outfile.root");
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("DY.root");
       if (!f || !f->IsOpen()) {
-	 f = new TFile("outfile.root");
+	 f = new TFile("DY.root");
       }
       f->GetObject("IIHEAnalysis",tree);
 
@@ -2304,6 +2304,7 @@ void Yields::Init(TTree *tree)
    fChain->SetBranchStatus("mc_charge",1);
    fChain->SetBranchStatus("mc_mother_pdgId",1);
    fChain->SetBranchStatus("mc_mother_index",1);
+   fChain->SetBranchStatus("mc_numberOfMothers",1);
    fChain->SetBranchStatus("mu_gt_charge",1);
    fChain->SetBranchStatus("mu_isGlobalMuon",1);
 

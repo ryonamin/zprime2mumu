@@ -90,6 +90,9 @@ void Yields::Loop()
    int no_reco = 0;
    int counter_gen[4] = {0};
    int counter_reco[7] = {0};
+   int skip(0);
+   int noNeutBos(0);
+   int noTwins(0);
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
       if(jentry%1000 == 0) cout << jentry << " over " << nentries << endl;
@@ -172,9 +175,9 @@ void Yields::Loop()
 	    h1d_mass->Fill(1-recomass/genmass_match);
 	    h2d_mass->Fill(1-recomass/genmass_match, genmass_match);
 
-	    if(recomass > 2500*0.9 && recomass < 2500*1.1) { 
+	    //if(recomass > 2500*0.9 && recomass < 2500*1.1) { 
 	       h_costheta_reco->Fill(2*recopair_match.Pz()/abs(recopair_match.Pz())*(recomu1_match.E()*recomu2_match.Pz() - recomu2_match.E()*recomu1_match.Pz())/(recomass*sqrt(recomass*recomass+recopair_match.Pt()*recopair_match.Pt())));
-	    }
+	    //}
 	    if(genmu1_match.Pt() > 200 && genmu1_match.Pt() < 1000) { 
 	       counter_reco[5]++;
 	       h1d_oneOverPt->Fill((1./recomu1_match.Pt() - 1./genmu1_match.Pt())/(1./genmu1_match.Pt()));
@@ -189,7 +192,7 @@ void Yields::Loop()
 	 }
       }
 
-      TLorentzVector genmu_1, genmu_2;
+      TLorentzVector genmu_1, genmu_2, genmu_X;
       int gen_index1, gen_index2;
       if(genmu.size() > 1) { // there are at least two muons around
 	 counter_gen[0]++ ; // all events
@@ -210,17 +213,37 @@ void Yields::Loop()
 	    }
 	 }
 
-         //here write the quark stuff
+	 //here write the quark stuff
+	 if(((*mc_mother_index)[gen_index1])[0] != ((*mc_mother_index)[gen_index2])[0]) {
+	    ++noTwins;
+	    continue;
+	 }
 	 int Zprime_index = ((*mc_mother_index)[gen_index1])[0];
+	 int Zprime_pdgId = ((*mc_mother_pdgId)[gen_index1])[0];
+	 if(Zprime_pdgId != 32 && Zprime_pdgId != 23 && Zprime_pdgId!= 22) {
+	    cout << "strange boson is " << Zprime_pdgId << endl;
+	    ++noNeutBos;
+	    continue;
+	 }
+	 if(((*mc_mother_pdgId)[Zprime_index]).size() != 2) {
+	    ++skip ;
+	    continue;
+	 } 
+	 //cout << "A" << endl;
 	 int quark_pdgId1 = ((*mc_mother_pdgId)[Zprime_index])[0];
+	 //cout << "B" << endl;
 	 int quark_index1 = ((*mc_mother_index)[Zprime_index])[0];
 	 int quark_pdgId2 = ((*mc_mother_pdgId)[Zprime_index])[1];
 	 int quark_index2 = ((*mc_mother_index)[Zprime_index])[1];
-         int quark_index(0);
+	 int quark_index(0);
 
-         if(quark_pdgId1 > 0) quark_index = quark_index1; 
+	 if(quark_pdgId1 > 0) quark_index = quark_index1; 
 	 else if(quark_pdgId2 > 0) quark_index = quark_index2; 
-	 else cout << "Houston we have a problem" << endl;
+	 if(quark_pdgId1*quark_pdgId2 > 0) {
+	    //cout << "Houston we have a problem" << endl;
+	    //cout << quark_pdgId1 << "," << quark_pdgId2 << endl;
+	    continue;
+	 }
 
 	 h_gen1_eta->Fill(genmu_1.Eta());
 	 h_gen2_eta->Fill(genmu_2.Eta());      
@@ -314,6 +337,9 @@ void Yields::Loop()
    cout << "Matched muons:              " << counter_reco[4] << endl;
    cout << "10\% of generated mass:      " << counter_reco[5] << endl;
    cout << "At least one muon in GE1/1: " << counter_reco[6] << endl;
+   cout << "Not twin muons:             " << noTwins << endl;
+   cout << "Not a gamma/Z/Z':           " << noNeutBos << endl;
+   cout << "Skipped motherless stuff:   " << skip << endl;
 
    myfile->Write();
    Resolvs(h2d_mass);
