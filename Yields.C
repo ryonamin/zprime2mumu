@@ -93,6 +93,7 @@ void Yields::Loop()
    int skip(0);
    int noNeutBos(0);
    int noTwins(0);
+   int sameCharge(0);
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
       if(jentry%1000 == 0) cout << jentry << " over " << nentries << endl;
@@ -109,26 +110,26 @@ void Yields::Loop()
       std::vector<int> gen_index;
       TLorentzVector genmu_tmp, recomu_tmp, genmu_match, genmu1_match, genmu2_match, recomu_match, recomu1_match, recomu2_match;
 
-      for(int i = 0; i < (int)mc_n; i++) {
+      for(unsigned int i = 0; i < mc_n; i++) {
 
-	 if((*mc_status)[i] != 1) continue ; // final state (observable)
-	 if(abs((*mc_pdgId)[i])!=13) continue; // we want muons
-	 genmu_tmp.SetPxPyPzE((*mc_px)[i],(*mc_py)[i],(*mc_pz)[i],(*mc_energy)[i]);
+	 if(mc_status->at(i) != 1) continue ; // final state (observable)
+	 if(abs(mc_pdgId->at(i)) != 13) continue; // we want muons
+	 genmu_tmp.SetPxPyPzE(mc_px->at(i),mc_py->at(i),mc_pz->at(i),mc_energy->at(i));
 	 genmu.push_back(genmu_tmp) ;
-	 gen_index.push_back((*mc_index)[i]) ;
+	 gen_index.push_back(i) ;
 	 genmu_match = genmu_tmp;
 	 bool matchgen = false;
 
-	 for(int j = 0; j < (*mu_gt_pt).size(); j++) {
+	 for(unsigned int j = 0; j < mu_gt_pt->size(); j++) {
 	    //if((*mu_gt_pt)[j] <10) continue;
 	    //if(!PassHighPtSel(j)) continue;
 	    double dR = 0.3; 
 	    double mupt = 0;
 	    TLorentzVector recomu_loop; 
-	    recomu_loop.SetPxPyPzE((*mu_gt_px)[j],(*mu_gt_py)[j],(*mu_gt_pz)[j],(*mu_gt_p)[j]);
+	    recomu_loop.SetPxPyPzE(mu_gt_px->at(j),mu_gt_py->at(j),mu_gt_pz->at(j),mu_gt_p->at(j));
 	    //Gen-Reco matching: do a delta R matching and save the gen particle idx
 	    //Also require that the charge is correctly measured
-	    if(recomu_loop.DeltaR(genmu_match) < dR && recomu_loop.Pt() > mupt && (*mc_charge)[i] == (*mu_gt_charge)[j]) {
+	    if(recomu_loop.DeltaR(genmu_match) < dR && recomu_loop.Pt() > mupt && mc_charge->at(i) == mu_gt_charge->at(j)) {
 	       matchgen = true;
 	       mupt = recomu_loop.Pt();
 	       recomu_match = recomu_loop;
@@ -155,7 +156,7 @@ void Yields::Loop()
       if(recomu1_match.E() != 0 && recomu2_match.E() != 0) {
 	 if(PassHighPtSel(index1_match) && PassHighPtSel(index2_match)) { // the matched muons must both pass the selection
 	    //Split barrel and endcaps
-	    if(abs(recomu1_match.Eta()) < 1.2) {
+	    if(fabs(recomu1_match.Eta()) < 1.2) {
 	       h2d_pt_barrel->Fill(1-recomu1_match.Pt()/genmu1_match.Pt(), genmu1_match.Pt());
 	       h1d_pt_barrel->Fill(1-recomu1_match.Pt()/genmu1_match.Pt());
 	    }
@@ -165,8 +166,8 @@ void Yields::Loop()
 	    }
 	    counter_reco[4]++;
 	    //Compute the invariant mass     
-	    double genmass_match = (genmu1_match + genmu2_match).M();
 	    TLorentzVector genpair_match  = genmu1_match + genmu2_match;
+	    double genmass_match = genpair_match.M();
 	    TLorentzVector recopair_match  = recomu1_match + recomu2_match;
 	    double recomass = recopair_match.M();
 
@@ -175,14 +176,24 @@ void Yields::Loop()
 	    h1d_mass->Fill(1-recomass/genmass_match);
 	    h2d_mass->Fill(1-recomass/genmass_match, genmass_match);
 
+	    int sign_corr(0);
+            if(mu_gt_charge->at(index1_match) < 0) sign_corr = 1; 
+	    else if(mu_gt_charge->at(index2_match) < 0) sign_corr = -1; 
+	    if(mu_gt_charge->at(index1_match)*mu_gt_charge->at(index2_match) > 0) {
+	       cout << "reco leptons have the same charge" << endl;
+	       continue;
+	    }
+
 	    //if(recomass > 2500*0.9 && recomass < 2500*1.1) { 
-	       h_costheta_reco->Fill(2*recopair_match.Pz()/abs(recopair_match.Pz())*(recomu1_match.E()*recomu2_match.Pz() - recomu2_match.E()*recomu1_match.Pz())/(recomass*sqrt(recomass*recomass+recopair_match.Pt()*recopair_match.Pt())));
+	    h_costheta_reco->Fill(2*recopair_match.Pz()/fabs(recopair_match.Pz())*
+		  sign_corr*(recomu1_match.E()*recomu2_match.Pz() - recomu2_match.E()*recomu1_match.Pz())/
+		  (recomass*sqrt(recomass*recomass+recopair_match.Pt()*recopair_match.Pt())));
 	    //}
 	    if(genmu1_match.Pt() > 200 && genmu1_match.Pt() < 1000) { 
 	       counter_reco[5]++;
 	       h1d_oneOverPt->Fill((1./recomu1_match.Pt() - 1./genmu1_match.Pt())/(1./genmu1_match.Pt()));
 	       h2d_oneOverPt->Fill((1./recomu1_match.Pt() - 1./genmu1_match.Pt())/(1./genmu1_match.Pt()),1./genmu1_match.Pt());
-	       if((abs(recomu1_match.Eta()) > 1.5 && abs(recomu1_match.Eta()) < 2.2) || (abs(recomu2_match.Eta()) > 1.5 && abs(recomu2_match.Eta()) < 2.2)) 
+	       if((fabs(recomu1_match.Eta()) > 1.5 && fabs(recomu1_match.Eta()) < 2.2) || (fabs(recomu2_match.Eta()) > 1.5 && fabs(recomu2_match.Eta()) < 2.2)) 
 		  counter_reco[6]++ ;
 	    }
 	    if(genmu2_match.Pt() > 200 && genmu2_match.Pt() < 1000) { 
@@ -193,7 +204,7 @@ void Yields::Loop()
       }
 
       TLorentzVector genmu_1, genmu_2, genmu_X;
-      int gen_index1, gen_index2;
+      int gen_index1(0), gen_index2(0), gen_indexX(0);
       if(genmu.size() > 1) { // there are at least two muons around
 	 counter_gen[0]++ ; // all events
 	 genmu_1 = genmu[0] ;
@@ -214,34 +225,44 @@ void Yields::Loop()
 	 }
 
 	 //here write the quark stuff
-	 if(((*mc_mother_index)[gen_index1])[0] != ((*mc_mother_index)[gen_index2])[0]) {
+	 if(mc_mother_index->at(gen_index1).size() == 0 || mc_mother_index->at(gen_index1).size() == 0) 
+	    continue;
+
+	 if(mc_mother_index->at(gen_index1)[0] != mc_mother_index->at(gen_index2)[0]) {
 	    ++noTwins;
 	    continue;
 	 }
-	 int Zprime_index = ((*mc_mother_index)[gen_index1])[0];
-	 int Zprime_pdgId = ((*mc_mother_pdgId)[gen_index1])[0];
-	 if(Zprime_pdgId != 32 && Zprime_pdgId != 23 && Zprime_pdgId!= 22) {
-	    cout << "strange boson is " << Zprime_pdgId << endl;
+         
+	 if(mc_charge->at(gen_index1) == mc_charge->at(gen_index2)) {
+	    ++sameCharge;
+	    continue;
+	 }
+
+	 int Zprime_index = mc_mother_index->at(gen_index1)[0];
+	 int Zprime_pdgId = mc_mother_pdgId->at(gen_index1)[0];
+	 if(Zprime_index == -1) continue; // I cannot do anything with it currently
+	 if(abs(mc_mother_pdgId->at(Zprime_index)[0]) > 6) { // not part of the hard interaction
+	    //cout << "not hard boson is " << Zprime_pdgId << endl;
+	    //cout << mc_mother_pdgId->at(Zprime_index)[0] << endl; 
 	    ++noNeutBos;
 	    continue;
 	 }
-	 if(((*mc_mother_pdgId)[Zprime_index]).size() != 2) {
+	 if(mc_mother_pdgId->at(Zprime_index).size() != 2) {
 	    ++skip ;
 	    continue;
 	 } 
-	 //cout << "A" << endl;
-	 int quark_pdgId1 = ((*mc_mother_pdgId)[Zprime_index])[0];
-	 //cout << "B" << endl;
-	 int quark_index1 = ((*mc_mother_index)[Zprime_index])[0];
-	 int quark_pdgId2 = ((*mc_mother_pdgId)[Zprime_index])[1];
-	 int quark_index2 = ((*mc_mother_index)[Zprime_index])[1];
+	 int quark_pdgId1 = mc_mother_pdgId->at(Zprime_index)[0];
+	 int quark_index1 = mc_mother_index->at(Zprime_index)[0];
+	 int quark_pdgId2 = mc_mother_pdgId->at(Zprime_index)[1];
+	 int quark_index2 = mc_mother_index->at(Zprime_index)[1];
 	 int quark_index(0);
+	 
 
-	 if(quark_pdgId1 > 0) quark_index = quark_index1; 
-	 else if(quark_pdgId2 > 0) quark_index = quark_index2; 
+	 if(quark_pdgId1 > 0) quark_index = 0; 
+	 else if(quark_pdgId2 > 0) quark_index = 1; 
+	 
 	 if(quark_pdgId1*quark_pdgId2 > 0) {
 	    //cout << "Houston we have a problem" << endl;
-	    //cout << quark_pdgId1 << "," << quark_pdgId2 << endl;
 	    continue;
 	 }
 
@@ -249,12 +270,17 @@ void Yields::Loop()
 	 h_gen2_eta->Fill(genmu_2.Eta());      
 	 h_gen1_pt->Fill(genmu_1.Pt());
 	 h_gen2_pt->Fill(genmu_2.Pt());
-	 double genmass = (genmu_1 + genmu_2).M() ;
 	 TLorentzVector genpair  = genmu_1 + genmu_2;
+	 double genmass = genpair.M() ;
 
-	 h_costheta_gen->Fill(2*(*mc_pz)[quark_index]/abs((*mc_pz)[quark_index])*(genmu_1.E()*genmu_2.Pz() - genmu_2.E()*genmu_1.Pz())/(genmass*sqrt(genmass*genmass+genpair.Pt()*genpair.Pt())));
+	 int charge_corr(0);
+	 if(mc_charge->at(gen_index1) < 0) charge_corr = 1; 
+	 else charge_corr = -1;
+	 h_costheta_gen->Fill(2*mc_mother_pz->at(Zprime_index)[quark_index]/fabs(mc_mother_pz->at(Zprime_index)[quark_index])*
+	       charge_corr*(genmu_1.E()*genmu_2.Pz() - genmu_2.E()*genmu_1.Pz())/
+	       (genmass*sqrt(genmass*genmass+genpair.Pt()*genpair.Pt())));
 
-	 if(abs(genmu_1.Eta()) < 2.4 && abs(genmu_2.Eta()) < 2.4) {
+	 if(fabs(genmu_1.Eta()) < 2.4 && fabs(genmu_2.Eta()) < 2.4) {
 	    counter_gen[1]++ ; 
 	    if(genmu_1.Pt() > 10 && genmu_2.Pt() > 10) {
 	       //h_gen1_px->Fill(genmu_1.Px());
@@ -267,7 +293,7 @@ void Yields::Loop()
 	       //h_gen2_e->Fill(genmu_2.P());
 
 	       counter_gen[2]++ ; 
-	       if((abs(genmu_1.Eta()) > 1.5 && abs(genmu_1.Eta() < 2.2)) || (abs(genmu_2.Eta()) > 1.5 && abs(genmu_2.Eta()) < 2.2))
+	       if((fabs(genmu_1.Eta()) > 1.5 && fabs(genmu_1.Eta() < 2.2)) || (fabs(genmu_2.Eta()) > 1.5 && fabs(genmu_2.Eta()) < 2.2))
 		  counter_gen[3]++ ;
 	    }
 	 }
@@ -301,7 +327,7 @@ void Yields::Loop()
 	       index2 = i;
 	    }
 	 }
-	 if(abs(recomu_1.Eta()) < 2.4 && abs(recomu_2.Eta() < 2.4)) {
+	 if(fabs(recomu_1.Eta()) < 2.4 && fabs(recomu_2.Eta() < 2.4)) {
 	    counter_reco[1]++ ; 
 	    if(recomu_1.Pt() > 10 && recomu_2.Pt() > 10) {
 	       //h_reco1_px->Fill(recomu_1.Px());
@@ -321,7 +347,6 @@ void Yields::Loop()
    }
 
 
-
    // --------------------------------------------------------------
    cout << "G E N  L E V E L" << endl;
    cout << "All events:                 " << counter_gen[0] << endl;
@@ -335,9 +360,10 @@ void Yields::Loop()
    cout << "10 GeV pT cut:              " << counter_reco[2] << endl;
    cout << "Pass selection:             " << counter_reco[3] << endl;
    cout << "Matched muons:              " << counter_reco[4] << endl;
-   cout << "10\% of generated mass:      " << counter_reco[5] << endl;
+   cout << "10\% of generated mass:     " << counter_reco[5] << endl;
    cout << "At least one muon in GE1/1: " << counter_reco[6] << endl;
    cout << "Not twin muons:             " << noTwins << endl;
+   cout << "Muons having same charge:   " << sameCharge << endl;
    cout << "Not a gamma/Z/Z':           " << noNeutBos << endl;
    cout << "Skipped motherless stuff:   " << skip << endl;
 
