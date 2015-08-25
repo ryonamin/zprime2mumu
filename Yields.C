@@ -94,6 +94,8 @@ void Yields::Loop()
    int noNeutBos(0);
    int noTwins(0);
    int sameCharge(0);
+   int nF(0), nB(0);
+   int nF_gen(0), nB_gen(0), nF_reco(0), nB_reco(0);
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
       if(jentry%1000 == 0) cout << jentry << " over " << nentries << endl;
@@ -177,7 +179,7 @@ void Yields::Loop()
 	    h2d_mass->Fill(1-recomass/genmass_match, genmass_match);
 
 	    int sign_corr(0);
-            if(mu_gt_charge->at(index1_match) < 0) sign_corr = 1; 
+	    if(mu_gt_charge->at(index1_match) < 0) sign_corr = 1; 
 	    else if(mu_gt_charge->at(index2_match) < 0) sign_corr = -1; 
 	    if(mu_gt_charge->at(index1_match)*mu_gt_charge->at(index2_match) > 0) {
 	       cout << "reco leptons have the same charge" << endl;
@@ -185,10 +187,16 @@ void Yields::Loop()
 	    }
 
 	    //if(recomass > 2500*0.9 && recomass < 2500*1.1) { 
-	    h_costheta_reco->Fill(2*recopair_match.Pz()/fabs(recopair_match.Pz())*
-		  sign_corr*(recomu1_match.E()*recomu2_match.Pz() - recomu2_match.E()*recomu1_match.Pz())/
-		  (recomass*sqrt(recomass*recomass+recopair_match.Pt()*recopair_match.Pt())));
+	    double costheta_reco = 2*recopair_match.Pz()/fabs(recopair_match.Pz())*
+		  sign_corr*(-recomu1_match.E()*recomu2_match.Pz() + recomu2_match.E()*recomu1_match.Pz())/
+		  (recomass*sqrt(recomass*recomass+recopair_match.Pt()*recopair_match.Pt()));
+	    h_costheta_reco->Fill(costheta_reco);
+
 	    //}
+	    if(costheta_reco > 0) nF_reco++;
+	    else nB_reco++;
+
+
 	    if(genmu1_match.Pt() > 200 && genmu1_match.Pt() < 1000) { 
 	       counter_reco[5]++;
 	       h1d_oneOverPt->Fill((1./recomu1_match.Pt() - 1./genmu1_match.Pt())/(1./genmu1_match.Pt()));
@@ -205,6 +213,7 @@ void Yields::Loop()
 
       TLorentzVector genmu_1, genmu_2, genmu_X;
       int gen_index1(0), gen_index2(0), gen_indexX(0);
+
       if(genmu.size() > 1) { // there are at least two muons around
 	 counter_gen[0]++ ; // all events
 	 genmu_1 = genmu[0] ;
@@ -232,7 +241,7 @@ void Yields::Loop()
 	    ++noTwins;
 	    continue;
 	 }
-         
+
 	 if(mc_charge->at(gen_index1) == mc_charge->at(gen_index2)) {
 	    ++sameCharge;
 	    continue;
@@ -241,7 +250,7 @@ void Yields::Loop()
 	 int Zprime_index = mc_mother_index->at(gen_index1)[0];
 	 int Zprime_pdgId = mc_mother_pdgId->at(gen_index1)[0];
 	 if(Zprime_index == -1) continue; // I cannot do anything with it currently
-	 if(abs(mc_mother_pdgId->at(Zprime_index)[0]) > 6) { // not part of the hard interaction
+	 if(abs(mc_mother_pdgId->at(Zprime_index)[0]) > 6 || abs(mc_mother_pdgId->at(Zprime_index)[1]) > 6) { // not part of the hard interaction
 	    //cout << "not hard boson is " << Zprime_pdgId << endl;
 	    //cout << mc_mother_pdgId->at(Zprime_index)[0] << endl; 
 	    ++noNeutBos;
@@ -250,17 +259,17 @@ void Yields::Loop()
 	 if(mc_mother_pdgId->at(Zprime_index).size() != 2) {
 	    ++skip ;
 	    continue;
-	 } 
+	 }
+
 	 int quark_pdgId1 = mc_mother_pdgId->at(Zprime_index)[0];
 	 int quark_index1 = mc_mother_index->at(Zprime_index)[0];
 	 int quark_pdgId2 = mc_mother_pdgId->at(Zprime_index)[1];
 	 int quark_index2 = mc_mother_index->at(Zprime_index)[1];
 	 int quark_index(0);
-	 
+
 
 	 if(quark_pdgId1 > 0) quark_index = 0; 
 	 else if(quark_pdgId2 > 0) quark_index = 1; 
-	 
 	 if(quark_pdgId1*quark_pdgId2 > 0) {
 	    //cout << "Houston we have a problem" << endl;
 	    continue;
@@ -276,9 +285,44 @@ void Yields::Loop()
 	 int charge_corr(0);
 	 if(mc_charge->at(gen_index1) < 0) charge_corr = 1; 
 	 else charge_corr = -1;
-	 h_costheta_gen->Fill(2*mc_mother_pz->at(Zprime_index)[quark_index]/fabs(mc_mother_pz->at(Zprime_index)[quark_index])*
-	       charge_corr*(genmu_1.E()*genmu_2.Pz() - genmu_2.E()*genmu_1.Pz())/
-	       (genmass*sqrt(genmass*genmass+genpair.Pt()*genpair.Pt())));
+	 double quark_direction = mc_mother_pz->at(Zprime_index)[quark_index]/fabs(mc_mother_pz->at(Zprime_index)[quark_index]) ;
+	 double costheta_gen = 2*quark_direction*charge_corr*(-genmu_1.E()*genmu_2.Pz() + genmu_2.E()*genmu_1.Pz())/
+	       (genmass*sqrt(genmass*genmass+genpair.Pt()*genpair.Pt()));
+	 if(costheta_gen > 0) nF_gen++; 
+	 else nB_gen++;
+	 h_costheta_gen->Fill(costheta_gen);
+	 
+	 // manual computation of asymmetry
+	 TLorentzVector lepton, antilepton;
+	 int quark,antiquark;
+	 if(charge_corr == 1) { lepton = genmu_1; antilepton = genmu_2; }
+	 if(charge_corr == -1) { lepton = genmu_2; antilepton = genmu_1;}
+	 if(quark_index == 0) { quark = 0; antiquark = 1; }
+	 if(quark_index == 1) { quark = 1; antiquark = 0; }
+	 double pz_quark, pz_antiquark, pz_lepton, pz_antilepton ;
+	 pz_quark = mc_mother_pz->at(Zprime_index)[quark];
+	 pz_antiquark = mc_mother_pz->at(Zprime_index)[antiquark];
+	 pz_lepton = lepton.Pz();
+	 pz_antilepton = antilepton.Pz();
+	 
+	 if(fabs(pz_quark) > fabs(pz_antiquark)) {
+	    if(pz_quark*pz_lepton > 0) {
+	       if(pz_lepton*pz_antilepton > 0) {
+		  if(pz_lepton > pz_antilepton) nF++;
+		  else nB++;
+	       }
+	       else nF++;
+	    }
+	    else nB++;
+	 }
+	 else if(pz_quark*pz_lepton > 0) {
+	   if(pz_lepton*pz_antilepton > 0) {
+	     if(pz_antilepton > pz_lepton) nF++;
+	     else nB++;
+	   }
+	   else nF++;
+	 }
+	 else nB++;
 
 	 if(fabs(genmu_1.Eta()) < 2.4 && fabs(genmu_2.Eta()) < 2.4) {
 	    counter_gen[1]++ ; 
@@ -298,6 +342,7 @@ void Yields::Loop()
 	    }
 	 }
       }
+
 
       //-------------------------
 
@@ -346,6 +391,12 @@ void Yields::Loop()
       }
    }
 
+   double asym_gen = (double)(nF_gen-nB_gen)/(double)(nF_gen+nB_gen) ;
+   double asym_reco = (double)(nF_reco-nB_reco)/(double)(nF_reco+nB_reco) ;
+   double error_gen = 2.*sqrt(nF_gen*nF_gen + nB_gen*nB_gen)/pow(nF_gen-nB_gen,2) * asym_gen;
+   double error_reco = 2.*sqrt(nF_reco*nF_reco + nB_reco*nB_reco)/pow(nF_reco-nB_reco,2) * asym_reco;
+   cout << "GEN ASYMMETRY IS " << asym_gen << " +/- " << error_gen << endl;
+   cout << "RECO ASYMMETRY IS " << asym_reco << " +/- " << error_reco << endl;
 
    // --------------------------------------------------------------
    cout << "G E N  L E V E L" << endl;
@@ -360,8 +411,9 @@ void Yields::Loop()
    cout << "10 GeV pT cut:              " << counter_reco[2] << endl;
    cout << "Pass selection:             " << counter_reco[3] << endl;
    cout << "Matched muons:              " << counter_reco[4] << endl;
-   cout << "10\% of generated mass:     " << counter_reco[5] << endl;
+   cout << "10\% of generated mass:      " << counter_reco[5] << endl;
    cout << "At least one muon in GE1/1: " << counter_reco[6] << endl;
+   cout << "=== Oddities ====" << endl;
    cout << "Not twin muons:             " << noTwins << endl;
    cout << "Muons having same charge:   " << sameCharge << endl;
    cout << "Not a gamma/Z/Z':           " << noNeutBos << endl;
@@ -437,3 +489,5 @@ void Yields::Resolvs(TH2D * myh2d){
    mygph->SetName("gph_"+hname);
    mygph->Write();
 }
+
+
